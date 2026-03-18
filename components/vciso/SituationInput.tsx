@@ -38,7 +38,7 @@ const MODE_CARDS: ModeCard[] = [
 ];
 
 interface SituationInputProps {
-  onClassification: (classification: SituationClassification) => void;
+  onClassification: (classification: SituationClassification, situation: string) => void;
   onLoadingChange?: (loading: boolean) => void;
   profile: string;
 }
@@ -77,7 +77,7 @@ export function SituationInput({
           body: JSON.stringify({ situation, profile }),
         });
         const data: SituationClassification = await res.json();
-        onClassification(data);
+        onClassification(data, situation);
       } catch {
         setError('Não foi possível classificar a situação. Tente novamente.');
       } finally {

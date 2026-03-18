@@ -1,0 +1,55 @@
+---
+id: cissp-07
+title: Security Operations
+certification: CISSP
+domainNumber: 7
+keyFrameworks:
+  - NIST CSF
+  - MITRE ATT&CK
+  - ISO 27035
+relatedDomains:
+  - cissp-06
+  - issmp-04
+keywords:
+  - SOC
+  - incident response
+  - ransomware
+  - data breach
+  - SIEM
+  - forense
+  - contenção
+situationClusters:
+  - crisis
+  - operational
+---
+
+## Conceitos Fundamentais
+
+Operações de Segurança abrangem o monitoramento contínuo, detecção e resposta a incidentes de segurança. Inclui gestão de SOC, análise forense, recuperação de desastres e continuidade de negócios.
+
+## Frameworks de Referência
+
+- **NIST CSF**: Identify → Protect → Detect → Respond → Recover
+- **MITRE ATT&CK**: Mapeamento de TTPs de adversários reais
+- **ISO 27035**: Gestão de incidentes de segurança da informação
+
+## Controles Principais
+
+1. Plano de Resposta a Incidentes (IRP)
+2. Security Operations Center (SOC) — 24x7
+3. SIEM (Security Information and Event Management)
+4. Análise Forense Digital
+5. Plano de Recuperação de Desastres (DRP)
+
+## KPIs do Domínio
+
+| Métrica | Fórmula | Benchmark |
+|---------|---------|-----------|
+| MTTR (Mean Time to Respond) | Tempo médio de resposta a incidentes | < 4h (críticos) |
+| MTTC (Mean Time to Contain) | Tempo de contenção | < 24h (P1) |
+| Taxa de falsos positivos SIEM | Alertas falsos / Total alertas | < 20% |
+
+## Aplicação por Situação
+
+- **S01 (Ransomware)**: Contenção imediata → isolamento de rede → preservação forense → comunicação → recuperação por fases
+- **S02 (Data Breach)**: Identificação do escopo → contenção → notificação regulatória (LGPD 72h) → investigação forense → remediação

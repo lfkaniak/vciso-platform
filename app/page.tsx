@@ -1,21 +1,46 @@
-// Canary page — health-check visual (Story 1.1 AC5)
-// Will be replaced by SituationInput UI in Story 1.2
+'use client';
+
+import { useState } from 'react';
+import { SituationInput } from '@/components/vciso/SituationInput';
+import { ClassificationBadge } from '@/components/vciso/ClassificationBadge';
+import { useProfile } from '@/hooks/useProfile';
+import type { SituationClassification } from '@/types/index';
+
 export default function Home() {
+  const { profile } = useProfile();
+  const [classification, setClassification] = useState<SituationClassification | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-950">
-      <main className="flex flex-col items-center gap-6 text-center px-8">
-        <div className="flex items-center gap-3">
-          <span className="text-3xl">🛡️</span>
-          <h1 className="text-3xl font-semibold tracking-tight text-white">
-            vCISO Platform
-          </h1>
+    <main className="flex min-h-[calc(100vh-57px)] flex-col items-center justify-center gap-8 px-6 py-12">
+      <div className="flex flex-col items-center gap-2 text-center">
+        <h1 className="text-2xl font-semibold text-zinc-100">
+          Como posso ajudar hoje?
+        </h1>
+        <p className="text-sm text-zinc-500">
+          Descreva sua situação de segurança e receba orientação especializada
+        </p>
+      </div>
+
+      <SituationInput
+        profile={profile}
+        onClassification={setClassification}
+        onLoadingChange={setIsLoading}
+      />
+
+      {isLoading && (
+        <div
+          role="status"
+          aria-label="Analisando situação"
+          className="h-10 w-full max-w-2xl animate-pulse rounded-lg bg-zinc-800"
+        />
+      )}
+
+      {!isLoading && classification && (
+        <div className="w-full max-w-2xl">
+          <ClassificationBadge classification={classification} />
         </div>
-        <div className="flex items-center gap-2">
-          <span className="inline-block h-2.5 w-2.5 rounded-full bg-green-400 animate-pulse" />
-          <p className="text-zinc-400 text-sm">Sistema operacional</p>
-        </div>
-        <p className="text-zinc-600 text-xs font-mono">MVP v0.1</p>
-      </main>
-    </div>
+      )}
+    </main>
   );
 }

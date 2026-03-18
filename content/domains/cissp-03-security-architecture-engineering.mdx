@@ -1,0 +1,85 @@
+---
+id: cissp-03
+title: Security Architecture and Engineering
+certification: CISSP
+domainNumber: 3
+keyFrameworks:
+  - SABSA
+  - TOGAF
+  - Zero Trust NIST SP 800-207
+relatedDomains:
+  - cissp-01
+  - cissp-04
+  - cissp-05
+  - issmp-02
+keywords:
+  - arquitetura de segurança
+  - zero trust
+  - defesa em profundidade
+  - criptografia
+  - modelos de segurança
+  - engenharia de segurança
+  - design seguro
+  - cloud security
+  - revisão de arquitetura
+  - princípio do menor privilégio
+situationClusters:
+  - strategic
+  - projects
+---
+
+## Conceitos Fundamentais
+
+O Domínio 3 do CISSP cobre os conceitos e princípios de design de sistemas seguros, arquiteturas de segurança, modelos de controle de acesso e criptografia. Representa 13% do peso do exame e é fundamental para profissionais que avaliam ou projetam ambientes de TI seguros.
+
+**Princípios de Design Seguro**: Os princípios fundamentais incluem: Defesa em Profundidade (múltiplas camadas de controle), Menor Privilégio (acesso mínimo necessário), Separação de Funções (nenhum indivíduo tem controle total sobre um processo crítico), Need-to-Know (acesso apenas ao que é necessário para a função), Fail Secure/Fail Safe (falhas devem resultar em estado seguro), e Superfície de Ataque Mínima (reduzir pontos de entrada para atacantes).
+
+**Modelos de Segurança**: Modelos formais definem como informações podem fluir num sistema. Bell-LaPadula foca em confidencialidade: No Read Up (não leia de nível superior não autorizado) e No Write Down (não escreva em nível inferior). Biba foca em integridade: No Write Up e No Read Down. Clark-Wilson foca em integridade através de transações bem formadas e separação de funções. Brewer-Nash (Chinese Wall) previne conflitos de interesse.
+
+**Arquiteturas de Segurança**: Os elementos incluem: Trusted Computing Base (TCB) — o conjunto de hardware, firmware e software que implementa a política de segurança; Reference Monitor — conceito que garante que todo acesso passe por verificação; Núcleo de Segurança — implementação do Reference Monitor; e Rings de Proteção (0-3) que definem privilégios de execução.
+
+**Zero Trust**: O modelo Zero Trust abandona o paradigma "confiar mas verificar" pelo "nunca confiar, sempre verificar". Os princípios NIST SP 800-207: verificar explicitamente (autenticar e autorizar sempre), usar menor privilégio, assumir violação (projetar como se o atacante já estivesse dentro). Os pilares são: identidade, dispositivos, rede, aplicação/carga de trabalho e dados.
+
+**Criptografia**: Base de inúmeros controles de segurança. Criptografia simétrica (AES-256, 3DES) usa a mesma chave para cifrar e decifrar — mais rápida, adequada para grandes volumes. Criptografia assimétrica (RSA-2048+, ECC) usa par de chaves pública/privada — mais lenta, adequada para troca de chaves e assinaturas digitais. Funções de hash (SHA-256, SHA-3) produzem digest de tamanho fixo para verificação de integridade. PKI gerencia o ciclo de vida de certificados digitais.
+
+**Segurança em Nuvem**: Os modelos de serviço (IaaS, PaaS, SaaS) determinam a divisão de responsabilidade de segurança entre provedor e cliente — o Shared Responsibility Model. Em IaaS, o cliente gerencia SO, aplicações e dados; em SaaS, o cliente gerencia apenas dados e identidades. Os conceitos de CSP (Cloud Security Posture Management) e CWPP (Cloud Workload Protection Platform) são essenciais.
+
+## Frameworks de Referência
+
+- **SABSA (Sherwood Applied Business Security Architecture)**: Framework de arquitetura de segurança orientado a negócio que define 6 camadas: Contextual (negócio — o que, por que, quando, onde, quem, como), Conceitual (arquiteto — políticas), Lógica (designer — serviços de segurança), Física (engenheiro — mecanismos), Componente (construtor — produtos) e Operacional (administrador — operações). SABSA alinha cada decisão de arquitetura aos atributos de negócio.
+
+- **TOGAF (The Open Group Architecture Framework)**: Framework de arquitetura empresarial que inclui o Architecture Development Method (ADM) com fases: Preliminar, Visão (A), Arquitetura de Negócio (B), Arquitetura de Sistemas de Informação (C), Arquitetura de Tecnologia (D), Oportunidades e Soluções (E), Planejamento de Migração (F), Implementação (G), Gestão de Mudança (H) e Gestão de Requisitos. Integra segurança em todas as fases do ADM.
+
+- **Zero Trust NIST SP 800-207**: Define os sete princípios do Zero Trust: todas as fontes de dados e serviços são recursos; todas as comunicações são seguras independente da localização de rede; acesso por sessão individual; acesso determinado por política dinâmica; integridade e postura de segurança dos dispositivos é monitorada; autenticação e autorização são dinâmicas e rigorosas; coleta de informações sobre estado atual dos ativos. Descreve três abordagens de implementação: baseada em identidade, baseada em microssegmentação e baseada em rede overlay.
+
+## Controles Principais
+
+1. **Security Architecture Review (SAR)**: Processo formal de revisão de arquitetura de segurança para novos sistemas e mudanças significativas. Avaliar aderência a princípios de design seguro, modelos de ameaça (STRIDE, PASTA), superfície de ataque e controles compensatórios. Usar checklists padronizados por tipo de sistema (web, mobile, cloud, on-premises).
+
+2. **Threat Modeling**: Aplicar metodologias de modelagem de ameaças (STRIDE — Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege; ou PASTA — Process for Attack Simulation and Threat Analysis) durante o design de sistemas. Documentar ameaças identificadas, probabilidades, impactos e controles mitigatórios.
+
+3. **Implementação de Zero Trust Architecture**: Migrar gradualmente do modelo de perímetro para Zero Trust. Implementar MFA para todos os acessos, microssegmentação de rede, controle de acesso baseado em contexto (CBAC) e monitoramento contínuo de comportamento de usuários e entidades (UEBA).
+
+4. **Gestão do Ciclo de Vida de Chaves Criptográficas**: Implementar HSMs (Hardware Security Modules) para proteção de chaves de alto valor. Definir políticas de geração, distribuição, armazenamento, rotação, backup e destruição de chaves. Usar AES-256 para dados em repouso e TLS 1.3 para dados em trânsito.
+
+5. **Hardening de Sistemas e Configuração Segura**: Implementar baselines de configuração segura baseadas em CIS Benchmarks ou DISA STIGs para todos os tipos de sistema. Validar configurações automaticamente via SCAP e corrigir desvios em ciclos definidos. Documentar e aprovar formalmente exceções.
+
+6. **Controles de Segurança para Ambientes Cloud**: Implementar CSPM para monitoramento contínuo de postura de segurança em cloud. Definir políticas de IAM cloud seguindo least privilege. Usar criptografia para todos os dados armazenados e trafegados na nuvem. Avaliar riscos do modelo de responsabilidade compartilhada para cada serviço adquirido.
+
+7. **Proteção de Canais de Comunicação**: Garantir confidencialidade e integridade em todas as comunicações sensíveis via TLS 1.2+ (preferencialmente 1.3), com cipher suites aprovadas. Eliminar protocolos inseguros (SSL 3.0, TLS 1.0/1.1, RC4, 3DES). Implementar certificate pinning em aplicações críticas.
+
+## KPIs do Domínio
+
+| Métrica | Fórmula | Benchmark |
+|---------|---------|-----------|
+| Cobertura de Security Architecture Review | (Sistemas novos/mudanças significativas com SAR / Total de sistemas novos/mudanças) × 100 | 100% para sistemas críticos |
+| Conformidade com Baselines de Configuração | (Sistemas conformes com baseline / Total de sistemas gerenciados) × 100 | ≥ 95% |
+| Cobertura de Criptografia em Repouso | (Repositórios de dados sensíveis criptografados / Total de repositórios de dados sensíveis) × 100 | 100% para dados Confidencial+ |
+| Adoção de MFA | (Contas com MFA habilitado / Total de contas) × 100 | ≥ 99% para acesso privilegiado, ≥ 95% geral |
+| Sistemas com Protocolos Inseguros Ativos | Contagem absoluta de sistemas com SSL/TLS antigo ou cifras fracas | 0 |
+
+## Aplicação por Situação
+
+- **S10 – Cloud**: Conduzir avaliação do modelo de responsabilidade compartilhada para cada serviço em nuvem adquirido. Implementar Cloud Security Posture Management (CSPM) para visibilidade contínua. Aplicar princípios Zero Trust para acesso a recursos cloud — não confiar na rede corporativa como perímetro de confiança. Avaliar certificações do CSP (ISO 27001, SOC 2 Type II, CSA STAR). Garantir criptografia de dados em repouso e trânsito, controles de identidade robustos e logs centralizados.
+
+- **S13 – Architecture Review**: Estruturar processo de revisão de arquitetura com critérios claros de aprovação, participantes definidos (arquiteto de segurança, representante do negócio, TI) e documentação padronizada. Usar SABSA para conectar requisitos de negócio a controles técnicos. Aplicar STRIDE ou PASTA para threat modeling. Avaliar aderência ao Zero Trust, menor privilégio e defesa em profundidade. Produzir relatório com riscos identificados, recomendações priorizadas e aprovação formal.

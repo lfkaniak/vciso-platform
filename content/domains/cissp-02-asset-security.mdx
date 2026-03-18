@@ -1,0 +1,83 @@
+---
+id: cissp-02
+title: Asset Security
+certification: CISSP
+domainNumber: 2
+keyFrameworks:
+  - ISO 27001
+  - NIST SP 800-53
+  - CIS Controls
+relatedDomains:
+  - cissp-01
+  - cissp-05
+  - cissp-07
+  - issmp-03
+keywords:
+  - inventário de ativos
+  - classificação de dados
+  - proprietário de dados
+  - ciclo de vida de dados
+  - descarte seguro
+  - privacidade
+  - custódia
+  - rotulagem
+  - proteção de ativos
+  - gerenciamento de ativos
+situationClusters:
+  - operational
+  - strategic
+---
+
+## Conceitos Fundamentais
+
+O Domínio 2 do CISSP trata da identificação e classificação de ativos de informação ao longo de todo o seu ciclo de vida — da criação ao descarte seguro. Representa 10% do peso do exame e estabelece a base para decisões de proteção proporcionais ao valor e sensibilidade dos ativos.
+
+**Inventário de Ativos**: Todo programa de segurança eficaz começa por saber o que deve ser protegido. O inventário deve cobrir ativos de informação (dados, documentos), ativos de software (aplicações, sistemas operacionais, utilitários), ativos de hardware (servidores, endpoints, dispositivos de rede) e ativos de serviços (serviços em nuvem, utilitários). O princípio é: não é possível proteger o que não se conhece.
+
+**Classificação de Dados**: O processo de classificação atribui níveis de sensibilidade a dados com base em seu valor, requisitos legais e impacto potencial de divulgação não autorizada. Governos geralmente usam: Não Classificado, Sensível Mas Não Classificado (SBU), Confidencial, Secreto, Ultra-Secreto. Organizações privadas tipicamente usam: Público, Interno/Uso Comercial, Confidencial, Restrito/Altamente Confidencial.
+
+**Papéis de Responsabilidade sobre Dados**: O proprietário dos dados (data owner) é o executivo ou gestor de negócio responsável por determinar a classificação e os controles de acesso. O custodiante (data custodian) implementa e mantém os controles técnicos definidos pelo proprietário — geralmente TI. O processador de dados processa dados por conta de outro. O titular dos dados (data subject) é o indivíduo a quem os dados se referem.
+
+**Ciclo de Vida dos Dados**: Os dados passam por fases: criação/coleta → armazenamento → uso → compartilhamento → arquivamento → descarte. Cada fase requer controles específicos. O descarte seguro é especialmente crítico — dados em mídias descartadas sem sanitização adequada são uma fonte frequente de vazamentos. O NIST SP 800-88 define métodos: Clear (sobrescrever), Purge (apagar com garantia criptográfica) e Destroy (destruição física).
+
+**Requisitos de Retenção de Dados**: Obrigações regulatórias, legais e de negócio determinam por quanto tempo dados devem ser retidos. LGPD exige retenção apenas pelo período necessário à finalidade; legislações fiscais podem exigir 5 anos; registros de saúde podem exigir décadas. Políticas de retenção devem equilibrar conformidade com minimização de dados.
+
+**Proteção de Privacidade**: Os princípios de privacidade incluem: consentimento, limitação de finalidade, minimização de dados, exatidão, limitação de armazenamento, segurança e responsabilidade. Privacy by Design exige que privacidade seja considerada desde a concepção de sistemas e processos.
+
+## Frameworks de Referência
+
+- **ISO 27001**: O Anexo A da ISO 27001:2022 inclui o domínio A.5 (Políticas de segurança) e controles específicos para inventário de ativos, rotulagem e tratamento. A norma exige que todos os ativos sejam inventariados, classificados, rotulados e que haja procedimentos documentados de manuseio e descarte para cada nível de classificação.
+
+- **NIST SP 800-53**: O controle CM-8 (Information System Component Inventory) define requisitos detalhados para inventário de componentes. A família AC (Access Control) e MP (Media Protection) complementam com controles de acesso baseado em classificação e proteção/descarte de mídias. O NIST SP 800-88 especifica métodos de sanitização de mídias.
+
+- **CIS Controls**: O CIS Control 1 (Inventário e Controle de Ativos de Hardware) e CIS Control 2 (Inventário e Controle de Ativos de Software) são os controles de maior impacto (IG1/IG2) por estabelecerem a base para todos os outros controles. O controle 3 (Proteção de Dados) complementa com rotulagem, acesso e descarte.
+
+## Controles Principais
+
+1. **Inventário Automatizado de Ativos**: Implementar solução de descoberta e inventário automatizado que identifique todos os ativos de hardware (CMDB) e software em tempo real. Reconciliar inventário mensalmente contra registros de compras e contratos. Incluir ativos em nuvem (CSPM) e shadow IT descoberto.
+
+2. **Esquema de Classificação de Dados com Rotulagem**: Definir e implementar esquema de classificação com no mínimo 3 níveis. Aplicar rótulos automaticamente via DLP e ferramentas de classificação (ex: Microsoft Purview). Garantir que metadados de classificação persistam em todo o ciclo de vida do dado.
+
+3. **Procedimentos de Manuseio por Nível de Classificação**: Documentar e treinar procedimentos específicos para cada nível: como armazenar, transmitir, imprimir, compartilhar e descartar dados de cada classificação. Controles físicos e lógicos devem ser proporcionais ao nível de sensibilidade.
+
+4. **Política e Procedimento de Descarte Seguro**: Implementar procedimento formal de descarte para equipamentos e mídias, com certificado de destruição para ativos que contêm dados sensíveis. Usar método de sanitização adequado ao nível de classificação (NIST SP 800-88). Nunca descartar equipamentos sem sanitização verificada.
+
+5. **Gestão do Ciclo de Vida de Dados com Retenção**: Implementar política de retenção baseada em obrigações regulatórias e de negócio. Automatizar arquivamento e exclusão ao final do período de retenção. Manter trilha de auditoria de criação, acesso e exclusão de dados sensíveis.
+
+6. **Privacy by Design e Assessment (DPIA)**: Realizar Data Protection Impact Assessment para novos sistemas ou mudanças que processam dados pessoais. Documentar bases legais para processamento, fluxos de dados e controles implementados conforme LGPD/GDPR.
+
+7. **Controles de Proteção de Mídia Física**: Controlar acesso físico a mídias removíveis (USB, DVDs, fitas de backup). Exigir criptografia para todas as mídias removíveis que contenham dados classificados. Registrar movimentação de mídias com dados críticos.
+
+## KPIs do Domínio
+
+| Métrica | Fórmula | Benchmark |
+|---------|---------|-----------|
+| Cobertura do Inventário de Ativos | (Ativos no inventário / Ativos descobertos por scan) × 100 | ≥ 98% |
+| Taxa de Classificação de Dados | (Repositórios/sistemas com dados classificados / Total de repositórios) × 100 | ≥ 90% |
+| Certificados de Destruição Emitidos | Ativos descartados com certificado / Total de ativos descartados | 100% para dados Confidencial+ |
+| Cobertura de Rotulagem Automática | (Arquivos com rótulo / Total de arquivos em repositórios classificados) × 100 | ≥ 85% |
+| Conformidade de Retenção | (Dados dentro da política de retenção / Total de dados armazenados) × 100 | ≥ 95% |
+
+## Aplicação por Situação
+
+- **S15 – Asset Inventory**: Iniciar por descoberta automatizada de ativos com ferramentas como Nmap, Qualys, ou agentes de CMDB. Categorizar ativos por tipo, criticidade e proprietário. Integrar inventário com ITSM para controle de mudanças. Validar cobertura comparando com registros de compras, Active Directory e cloud billing. Priorizar inventário de ativos que processam dados sensíveis para aplicação imediata de controles de classificação e proteção.

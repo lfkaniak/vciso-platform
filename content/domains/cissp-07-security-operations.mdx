@@ -8,16 +8,21 @@ keyFrameworks:
   - MITRE ATT&CK
   - ISO 27035
 relatedDomains:
+  - cissp-04
+  - cissp-05
   - cissp-06
   - issmp-04
 keywords:
+  - operações de segurança
+  - resposta a incidentes
+  - SIEM
   - SOC
-  - incident response
+  - forensics
+  - threat hunting
+  - detecção e resposta
+  - gestão de incidentes
   - ransomware
   - data breach
-  - SIEM
-  - forense
-  - contenção
 situationClusters:
   - crisis
   - operational
@@ -25,31 +30,56 @@ situationClusters:
 
 ## Conceitos Fundamentais
 
-Operações de Segurança abrangem o monitoramento contínuo, detecção e resposta a incidentes de segurança. Inclui gestão de SOC, análise forense, recuperação de desastres e continuidade de negócios.
+O Domínio 7 do CISSP é o mais abrangente em termos operacionais, representando 13% do peso do exame. Trata de como detectar, responder e recuperar de incidentes de segurança, além dos processos operacionais contínuos que mantêm a postura de segurança no dia a dia.
+
+**Gestão de Incidentes de Segurança**: O ciclo de vida de resposta a incidentes possui fases bem definidas: Preparação (planos, equipe, ferramentas e treinamento prontos antes do incidente); Detecção e Análise (identificar se é um verdadeiro incidente, sua natureza e escopo); Contenção (limitar o impacto — contenção de curto prazo para parar o sangramento, contenção de longo prazo para corrigir causa raiz); Erradicação (remover o artefato malicioso, corrigir a vulnerabilidade explorada); Recuperação (restaurar sistemas para operação normal com monitoramento intensificado); Pós-Incidente (lessons learned, atualização de controles e planos).
+
+**Security Operations Center (SOC)**: O SOC é o hub de monitoramento e resposta a incidentes. Opera 24x7 e é organizado em tiers: Tier 1 (triagem de alertas, tratamento de incidentes de baixa complexidade), Tier 2 (investigação aprofundada, correlação de eventos), Tier 3 (threat hunting, análise de malware, gestão de vulnerabilidades críticas). Um SIEM (Security Information and Event Management) agrega e correlaciona logs de múltiplas fontes.
+
+**Threat Intelligence**: Informação processada sobre ameaças que permite tomar decisões de segurança. Classificada por nível: Estratégica (tendências, atores de ameaça para executivos); Tática (TTPs de adversários para equipe de segurança); Operacional (campanhas ativas, IOCs para SOC); Técnica (hashes, IPs, domínios maliciosos para ferramentas de detecção). Fontes: ISACs setoriais, feeds comerciais, OSINT, compartilhamento entre pares.
+
+**Digital Forensics**: A investigação forense segue princípios de preservação de evidência, cadeia de custódia e reprodutibilidade. Order of Volatility define a sequência de coleta: registros de CPU e cache, memória RAM, conexões de rede ativas, processos em execução, disco rígido, logs remotos, registros físicos. Ferramentas forenses (Autopsy, FTK, Volatility) analisam evidências sem alterar os originais.
+
+**Disaster Recovery**: O DRP define como restaurar sistemas de TI após um desastre. RTO (Recovery Time Objective) é o tempo máximo aceitável para restaurar um sistema. RPO (Recovery Point Objective) é a quantidade máxima aceitável de perda de dados medida em tempo. Estratégias de backup: backup completo + incremental/diferencial, replicação síncrona/assíncrona, sites alternativos (hot/warm/cold).
+
+**Threat Hunting**: Processo proativo de busca por ameaças que ainda não acionaram alertas automatizados. O caçador parte de uma hipótese baseada em threat intelligence ou conhecimento de TTPs, coleta dados relevantes, analisa em busca de padrões anômalos e, se confirmar a hipótese, trata como incidente. Difere do monitoramento reativo por ser dirigido por hipótese humana.
 
 ## Frameworks de Referência
 
-- **NIST CSF**: Identify → Protect → Detect → Respond → Recover
-- **MITRE ATT&CK**: Mapeamento de TTPs de adversários reais
-- **ISO 27035**: Gestão de incidentes de segurança da informação
+- **NIST CSF (Cybersecurity Framework)**: Organiza práticas de segurança em cinco funções: Identificar (gerenciar riscos de sistemas, ativos, dados e capacidades), Proteger (implementar salvaguardas), Detectar (identificar ocorrência de eventos), Responder (agir em relação ao incidente detectado) e Recuperar (manter resiliência e restaurar capacidades). O NIST CSF 2.0 adicionou a função Govern. Cada função é dividida em categorias e subcategorias com referências a outros padrões.
+
+- **MITRE ATT&CK**: Matriz de conhecimento de táticas e técnicas de adversários baseada em observações reais. A versão Enterprise cobre 14 táticas (desde Reconhecimento até Impact) com centenas de técnicas e sub-técnicas documentadas. Uso principal em segurança de operações: mapeamento de detecções existentes (gap analysis), criação de detection rules baseadas em TTPs, emulação de adversários (red team), threat hunting e comunicação estruturada de incidentes.
+
+- **ISO 27035**: Norma internacional para gestão de incidentes de segurança da informação. Define processos em cinco fases: Planejamento e Preparação, Detecção e Reporte, Avaliação e Decisão, Resposta, Lições Aprendidas. Inclui estrutura para classificação de incidentes, escalonamento, evidência de preservação e comunicação interna/externa. Complementada pela ISO 27037 (evidências digitais) e ISO 27043 (investigação de incidentes).
 
 ## Controles Principais
 
-1. Plano de Resposta a Incidentes (IRP)
-2. Security Operations Center (SOC) — 24x7
-3. SIEM (Security Information and Event Management)
-4. Análise Forense Digital
-5. Plano de Recuperação de Desastres (DRP)
+1. **SIEM e Monitoramento Centralizado de Logs**: Implementar SIEM com ingestão de logs de fontes críticas: firewalls, EDR, sistemas de autenticação, aplicações críticas, cloud trail. Criar correlation rules baseadas em MITRE ATT&CK. Definir SLAs de alerta: críticos alertados em ≤ 15 minutos, altos em ≤ 1 hora. Manter logs por período mínimo conforme requisito regulatório (geralmente 1-3 anos).
+
+2. **Plano de Resposta a Incidentes (IRP)**: Documentar e testar plano com: definição de critérios de incidente e classificação por severidade, papéis e responsabilidades da equipe de resposta, playbooks por tipo de incidente (ransomware, phishing, data breach, DDoS), critérios de escalonamento interno e externo, e procedimentos de comunicação (reguladores, clientes, mídia). Testar via tabletop exercise semianuais.
+
+3. **Playbooks de Resposta por Tipo de Ameaça**: Criar e manter playbooks detalhados para os incidentes mais prováveis e impactantes: ransomware, phishing avançado, comprometimento de credenciais, exfiltração de dados, insider threat, DDoS. Cada playbook deve cobrir detecção, triagem, contenção, erradicação e recuperação com decisões claramente definidas.
+
+4. **EDR (Endpoint Detection and Response)**: Implementar solução EDR em todos os endpoints com capacidade de detecção comportamental, isolamento remoto de dispositivos comprometidos, coleta forense automatizada e integração com SIEM. Manter banco de dados de threat intelligence atualizado. Configurar em modo de prevenção para ameaças conhecidas.
+
+5. **Gestão de Vulnerabilidades Operacional**: Complementar o programa de gestão de vulnerabilidades com threat intelligence contextual — priorizar patches de CVEs sendo ativamente explorados em campanhas ativas. Implementar patch management com ciclos definidos (Patch Tuesday + patches de emergência para críticos explorados ativamente em 72 horas).
+
+6. **Backup e Verificação de Recuperabilidade**: Implementar estratégia de backup seguindo regra 3-2-1-1-0 (3 cópias, 2 mídias diferentes, 1 offsite, 1 imutável/air-gapped, 0 erros de restauração verificados). Testar restauração mensalmente para sistemas críticos. Garantir que backups sejam imutáveis (protegidos contra ransomware que ataca backups).
+
+7. **Programa de Threat Hunting**: Realizar sessões de threat hunting mensais baseadas em hipóteses derivadas de threat intelligence recente. Documentar hipóteses, metodologia, dados analisados e resultados. Integrar descobertas com melhorias de detecção no SIEM. Medir em hunter: hipóteses testadas, técnicas cobertas e detecções criadas.
 
 ## KPIs do Domínio
 
 | Métrica | Fórmula | Benchmark |
 |---------|---------|-----------|
-| MTTR (Mean Time to Respond) | Tempo médio de resposta a incidentes | < 4h (críticos) |
-| MTTC (Mean Time to Contain) | Tempo de contenção | < 24h (P1) |
-| Taxa de falsos positivos SIEM | Alertas falsos / Total alertas | < 20% |
+| MTTD — Tempo Médio para Detecção | Média de horas entre início do incidente e detecção | ≤ 24 horas (meta ideal ≤ 4 horas) |
+| MTTR — Tempo Médio para Resposta/Contenção | Média de horas entre detecção e contenção confirmada | ≤ 4 horas para críticos |
+| Cobertura de Fontes de Log no SIEM | (Fontes críticas integradas ao SIEM / Total de fontes críticas definidas) × 100 | ≥ 95% |
+| Taxa de Falso Positivo no SIEM | (Alertas falso positivo / Total de alertas gerados) × 100 | ≤ 10% para alertas de alta prioridade |
+| Testes de Restauração Bem-Sucedidos | Testes de backup que resultaram em restauração bem-sucedida / Total de testes | 100% |
 
 ## Aplicação por Situação
 
-- **S01 (Ransomware)**: Contenção imediata → isolamento de rede → preservação forense → comunicação → recuperação por fases
-- **S02 (Data Breach)**: Identificação do escopo → contenção → notificação regulatória (LGPD 72h) → investigação forense → remediação
+- **S01 – Ransomware**: Ao detectar ransomware, ativar IRP imediatamente. Contenção de curto prazo: isolar sistemas afetados da rede (EDR remote isolation ou VLAN quarantine), revogar credenciais comprometidas, bloquear C2 identificados em firewall. Identificar o vetor de entrada (phishing, RDP exposto, vuln explorada) e escopo do impacto (sistemas afetados, dados criptografados). Verificar integridade e disponibilidade dos backups imediatamente. Notificar liderança, jurídico e, se aplicável, seguros cibernéticos. Decisão sobre pagamento de resgate deve envolver jurídico e OFAC considerations. Erradicação: rebuild de sistemas do zero (não restaurar imagem infectada). Post-incident: reforçar proteções no vetor de entrada.
+
+- **S02 – Data Breach**: Ao detectar ou suspeitar de exfiltração de dados, ativar IRP. Determinar: quais dados foram acessados (classificação), volume estimado, período de acesso não autorizado, e se o acesso ainda está ativo. Conter o acesso (revogar credenciais, bloquear IP/conta maliciosa). Preservar evidências forenses antes de qualquer limpeza. Engajar jurídico e DPO imediatamente para avaliação de obrigações de notificação (LGPD: 72 horas para ANPD se risco relevante; GDPR: 72 horas para autoridade supervisora). Comunicação deve ser coordenada — não especular publicamente sobre escopo antes de investigação concluída.

@@ -1,0 +1,82 @@
+---
+id: issmp-04
+title: Contingency Management
+certification: ISSMP
+domainNumber: 4
+keyFrameworks:
+  - NIST SP 800-34
+  - ISO 22301
+  - BCI GPG
+relatedDomains:
+  - cissp-01
+  - cissp-07
+  - issmp-01
+keywords:
+  - continuidade de negócios
+  - recuperação de desastres
+  - BCP
+  - DRP
+  - BIA
+  - RTO
+  - RPO
+  - gestão de crises
+  - resiliência organizacional
+  - plano de contingência
+situationClusters:
+  - crisis
+  - strategic
+---
+
+## Conceitos Fundamentais
+
+O Domínio 4 do ISSMP trata do planejamento e gestão de contingências para garantir que a organização possa sobreviver e se recuperar de interrupções significativas. É um dos domínios mais diretamente ligados à sobrevivência organizacional e ganhou destaque após pandemia, ataques de ransomware em larga escala e desastres naturais.
+
+**Business Continuity Planning (BCP) vs. Disaster Recovery Planning (DRP)**: BCP é mais abrangente — cobre como o negócio mantém suas funções críticas durante e após uma interrupção, podendo incluir processos manuais, relocação de pessoal e comunicação com stakeholders. DRP é o componente de TI do BCP — foca especificamente em como restaurar sistemas, aplicações e dados de TI após um desastre. Um BCP sem DRP não cobre a dependência crítica de TI; um DRP sem BCP ignora os processos de negócio.
+
+**Business Impact Analysis (BIA)**: O BIA é o alicerce de todo planejamento de continuidade. Identifica: processos de negócio críticos e suas interdependências, impacto financeiro e operacional de cada hora/dia de interrupção, RTO (Recovery Time Objective — tempo máximo para restaurar) e RPO (Recovery Point Objective — ponto de dados mais antigo aceitável para restaurar), e recursos necessários para recuperação (pessoal, tecnologia, instalações, fornecedores).
+
+**Estratégias de Recuperação**: As estratégias variam em custo e velocidade de recuperação. Para TI: Hot Site (espelho ativo — RTO minutos/horas, custo muito alto), Warm Site (infraestrutura parcialmente configurada — RTO horas/dias), Cold Site (espaço vazio que precisa ser equipado — RTO dias/semanas), Cloud-based DRaaS (custo baseado em uso, RTO variável). Para negócio: manual workarounds, relocação para site alternativo, contratação temporária, terceirização de emergência.
+
+**Plano de Gestão de Crises**: A crise é diferente do incidente rotineiro pela magnitude do impacto, pressão de tempo e necessidade de decisões com informação incompleta. O plano de gestão de crises define: composição e ativação do Comitê de Crise, processo de tomada de decisão acelerado, comunicação com stakeholders críticos (conselho, colaboradores, clientes, reguladores, mídia), e critérios de declaração e encerramento de crise.
+
+**Exercícios e Testes**: Planos não testados são uma falsa sensação de segurança. Os tipos de teste em ordem crescente de rigor: Tabletop Exercise (discussão baseada em cenário, sem interrupção operacional), Walkthrough (revisão passo a passo do plano), Simulation (ambiente simulado mas sistemas reais não afetados), Parallel Test (sistemas de recuperação ativados em paralelo com produção), Full-Interruption Test (produção desligada para testar recuperação completa — máximo risco, máxima validade).
+
+**Comunicação de Crise**: A comunicação durante uma crise pode determinar o nível de dano reputacional tanto quanto a crise em si. Princípios: comunicar cedo mesmo com informação incompleta (evitar vácuo de informação preenchido por rumores), ser transparente sobre o que é conhecido e desconhecido, ter porta-voz único e treinado, adaptar a mensagem a cada audiência (colaboradores, clientes, reguladores, mídia), e nunca especular.
+
+## Frameworks de Referência
+
+- **NIST SP 800-34**: Contingency Planning Guide for Federal Information Systems. Define sete passos para o processo de contingência: desenvolver política de contingência, conduzir BIA, identificar controles preventivos, criar estratégias de contingência, desenvolver plano de contingência, treinar pessoal e testar o plano, e manter o plano. Fornece templates para cada tipo de sistema (servidores, desktops, redes de área local, aplicações, sites web, mainframes).
+
+- **ISO 22301**: Norma internacional para Sistemas de Gestão de Continuidade de Negócios (SGCN). Define requisitos para planejar, estabelecer, implementar, operar, monitorar, revisar, manter e melhorar o SGCN. Estrutura similar à ISO 27001: análise de contexto, liderança e comprometimento, planejamento, suporte (recursos, competências, documentação), operação (BIA, estratégias, planos), avaliação de desempenho e melhoria contínua. Permite certificação por auditor externo.
+
+- **BCI GPG (Business Continuity Institute Good Practice Guidelines)**: Guia de boas práticas do BCI, referência global para profissionais de continuidade de negócios. Organizado em 6 elementos profissionais: PP1 (Política e Gestão do Programa), PP2 (Compreensão da Organização / BIA), PP3 (Determinação da Estratégia), PP4 (Desenvolvimento e Implementação), PP5 (Exercício, Manutenção e Revisão), PP6 (Cultura e Embedding). Alinhado com ISO 22301.
+
+## Controles Principais
+
+1. **Business Impact Analysis (BIA) Formal e Atualizado**: Conduzir BIA com todas as áreas de negócio para documentar: processos críticos, interdependências internas e externas, impacto por hora/dia de interrupção (financeiro, reputacional, regulatório), RTO e RPO para cada processo crítico, e recursos mínimos para recuperação. Revisar anualmente e após mudanças significativas no negócio.
+
+2. **Planos de Continuidade por Cenário**: Desenvolver planos específicos para os cenários de maior probabilidade e impacto: falha de infraestrutura crítica de TI, ataque de ransomware, indisponibilidade de fornecedor crítico, desastre no datacenter primário, indisponibilidade de pessoal-chave (pandemia, greve), e falha de serviço de nuvem crítico.
+
+3. **Estratégia e Infraestrutura de Recuperação de TI (DRP)**: Implementar solução de DRaaS ou site de DR adequada aos RTOs definidos no BIA para sistemas críticos. Documentar procedimentos de failover e failback. Garantir que backups imutáveis e replicação de dados satisfaçam os RPOs. Testar recuperação de sistemas críticos mensalmente.
+
+4. **Programa de Exercícios e Testes**: Executar calendário anual de testes: tabletop exercises por cenário (semestrais), simulações com equipes técnicas (anuais), e testes de recuperação de sistemas em ambiente de DR (mensal para críticos, trimestral para demais). Documentar resultados, gaps identificados e planos de melhoria.
+
+5. **Plano de Comunicação de Crise**: Desenvolver plano com: lista de contatos de todos os stakeholders críticos, templates de comunicação por audiência e cenário, critérios de ativação, aprovações necessárias, porta-voz designado e backup, e processo de atualização de comunicados. Incluir obrigações de notificação regulatória (ANPD, Bacen, ANS, etc.).
+
+6. **Gestão de Fornecedores Críticos em Cenários de Continuidade**: Para cada fornecedor crítico, avaliar o plano de continuidade do fornecedor, testar a capacidade de manter serviços durante interrupção e ter alternativas (plano B) documentadas. Incluir cláusulas de continuidade em contratos com fornecedores críticos.
+
+7. **Manutenção e Atualização Periódica dos Planos**: Implementar processo de revisão e atualização de planos após: cada exercício realizado, incidente real, mudança significativa no negócio ou na tecnologia, e anualmente como revisão de calendário. Manter controle de versão e distribuição controlada dos planos.
+
+## KPIs do Domínio
+
+| Métrica | Fórmula | Benchmark |
+|---------|---------|-----------|
+| Cobertura do BIA | (Processos críticos com BIA documentado / Total de processos críticos identificados) × 100 | 100% |
+| Sistemas Críticos com RTO/RPO Definido e Testado | (Sistemas com RTO/RPO definido e último teste dentro de 12 meses / Total de sistemas críticos) × 100 | ≥ 95% |
+| Testes de Recuperação Bem-Sucedidos | (Sistemas recuperados dentro do RTO no último teste / Total de sistemas testados) × 100 | ≥ 90% |
+| Exercícios de Continuidade Realizados | Exercícios realizados no ano / Exercícios planejados no calendário | 100% |
+| Tempo de Ativação do Plano de Crise | Horas entre detecção do evento e ativação formal do Comitê de Crise | ≤ 2 horas para incidentes críticos |
+
+## Aplicação por Situação
+
+- **S18 – Continuity/DR**: Ao avaliar ou construir a capacidade de continuidade e recuperação de desastres de uma organização, iniciar pelo BIA para garantir que os planos sejam calibrados ao impacto real de negócio. Verificar: existência e atualidade dos planos, se RTOs/RPOs definidos são alcançáveis com a infraestrutura atual de DR, frequência e resultado dos últimos testes, e cobertura de cenários de ameaças relevantes (incluindo ransomware, que é hoje o principal vetor de teste involuntário de DRP). Prioridades de melhoria típicas: implementar backups imutáveis e air-gapped para ransomware-resilience, testar recuperação de sistemas críticos (muitas organizações nunca testaram), e criar/atualizar plano de comunicação de crise. Usar ISO 22301 como referência para maturidade e NIST SP 800-34 para detalhes técnicos de DRP.

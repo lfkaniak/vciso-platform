@@ -9,15 +9,20 @@ keyFrameworks:
   - PCI DSS
 relatedDomains:
   - cissp-01
-  - issmp-01
+  - cissp-02
+  - cissp-05
+  - issmp-05
 keywords:
   - conformidade
-  - auditoria
-  - ISO 27001
   - LGPD
   - GDPR
-  - regulamentação
-  - DPO
+  - ISO 27001
+  - PCI DSS
+  - auditoria
+  - privacidade de dados
+  - proteção de dados pessoais
+  - gap analysis
+  - programa de compliance
 situationClusters:
   - compliance
   - strategic
@@ -25,31 +30,56 @@ situationClusters:
 
 ## Conceitos Fundamentais
 
-Gestão de Conformidade de Segurança envolve garantir que a organização atenda a requisitos legais, regulatórios e contratuais de segurança. Inclui gestão de auditorias, evidências e programas de conformidade contínua.
+O Domínio 3 do ISSMP é dedicado ao gerenciamento do universo de obrigações regulatórias, legais e contratuais de segurança que as organizações devem satisfazer. Vai além de simplesmente "passar na auditoria" para construir um programa de conformidade sustentável que reduz riscos legais e operacionais reais.
+
+**O Universo de Conformidade de Segurança**: Organizações brasileiras tipicamente precisam gerenciar simultaneamente: LGPD (Lei 13.709/2018) para proteção de dados pessoais, normas setoriais (Resolução CMN 4.893 para bancos, RN 389 para saúde suplementar, etc.), padrões de segurança contratuais (PCI DSS para cartões, SOC 2 para SaaS, ISO 27001 para enterprise sales), e obrigações internacionais quando atendem clientes europeus (GDPR) ou americanos (HIPAA, CCPA).
+
+**LGPD — Lei Geral de Proteção de Dados**: A LGPD (Lei 13.709/2018) entrou em vigor em setembro de 2020 com sanções aplicáveis desde agosto de 2021. Principais elementos: bases legais para tratamento (consentimento, legítimo interesse, cumprimento de obrigação legal, execução de contrato, entre outras), direitos dos titulares (acesso, correção, anonimização, portabilidade, eliminação), obrigações de segurança (medidas técnicas e administrativas), notificação de incidentes à ANPD em prazo razoável, e designação de Encarregado (DPO). Sanções: até 2% do faturamento, limitado a R$50 milhões por infração.
+
+**GDPR — General Data Protection Regulation**: Regulamento europeu aplicável a qualquer organização que processe dados de residentes da UE, independente da localização da organização. Princípios: legalidade, justiça e transparência; limitação de finalidade; minimização de dados; exatidão; limitação de armazenamento; integridade e confidencialidade; responsabilidade. Direitos dos titulares incluem direito ao esquecimento e portabilidade de dados. Notificação obrigatória de violação em 72 horas.
+
+**ISO 27001 — Sistema de Gestão de Segurança da Informação**: A norma mais reconhecida internacionalmente para segurança da informação. Define requisitos para estabelecer, implementar, manter e melhorar continuamente um SGSI. Baseada no ciclo PDCA. O Anexo A da ISO 27001:2022 lista 93 controles em 4 temas (Organizacionais, Pessoas, Físicos, Tecnológicos). A certificação é concedida após auditoria por organismo certificador credenciado.
+
+**PCI DSS — Payment Card Industry Data Security Standard**: Padrão de segurança para organizações que processam, armazenam ou transmitem dados de cartão de pagamento. PCI DSS v4.0 (2022) tem 12 requisitos organizados em 6 objetivos de controle. O escopo é determinado pelo ambiente de dados do titular do cartão (CDE — Cardholder Data Environment). Níveis de conformidade determinam o tipo de avaliação necessária (SAQ ou auditoria por QSA).
+
+**Gestão do Programa de Conformidade**: Um programa maduro de conformidade inclui: inventário de todas as obrigações, mapeamento de requisitos para controles existentes, gap analysis periódico, planos de remediação formalizados, evidence collection automatizada, e reporting regular para a liderança. A conformidade não é um projeto com fim — é um processo contínuo.
 
 ## Frameworks de Referência
 
-- **ISO 27001:2022**: 93 controles em 4 temas (Organizacionais, Pessoas, Físicos, Tecnológicos)
-- **LGPD (Lei 13.709/2018)**: Proteção de dados pessoais no Brasil — DPO, base legal, DPIA
-- **PCI DSS v4.0**: 12 requisitos para proteção de dados de cartão
+- **ISO 27001**: Fornece estrutura completa para um SGSI certificável. O processo de certificação envolve: definição do escopo, Declaração de Aplicabilidade (SoA) listando todos os controles do Anexo A com justificativa de inclusão/exclusão, implementação dos controles aplicáveis, ciclos de auditoria interna, revisão pela direção e auditorias externas (Stage 1 + Stage 2 + surveillance). A ISO 27001:2022 atualizou o Anexo A para refletir ameaças modernas (cloud, DevSecOps, threat intelligence).
+
+- **LGPD/GDPR**: As duas normas de proteção de dados têm estrutura similar mas algumas diferenças importantes. LGPD tem 10 bases legais vs. 6 do GDPR. LGPD exige notificação à ANPD mas não define prazo explícito de 72h (apenas "prazo razoável"). GDPR exige DPIA obrigatória para certos tratamentos de alto risco. Ambas exigem DPO (Encarregado), transferência internacional controlada e direitos dos titulares atendidos. Para organizações sujeitas a ambas, implementar o padrão mais rigoroso geralmente atende ambos.
+
+- **PCI DSS**: O padrão v4.0 introduziu requisitos adicionais para autenticação (MFA obrigatório para todos os acessos ao CDE), segurança de aplicações web (proteção anti-skimming para páginas de pagamento), e customized approach (alternativa ao defined approach, com maior flexibilidade mas exigindo documentação detalhada de controles equivalentes). O ROC (Report on Compliance) ou SAQ (Self-Assessment Questionnaire) são as formas de comprovação de conformidade.
 
 ## Controles Principais
 
-1. Programa de Conformidade Contínua
-2. Gestão de Auditorias Internas e Externas
-3. Registro de Tratamento de Dados (LGPD Art. 37)
-4. Análise de Lacunas (Gap Analysis)
-5. Gestão de Evidências de Controles
+1. **Inventário de Obrigações de Conformidade**: Mapear e documentar todas as obrigações regulatórias, legais e contratuais aplicáveis à organização. Para cada obrigação: escopo, requisitos específicos, autoridade regulatória, frequência de renovação/auditoria, penalidades e responsável interno. Revisar anualmente e após mudanças no negócio ou no regulatório.
+
+2. **Gap Analysis Periódico**: Realizar avaliação estruturada de gap entre requisitos de cada norma aplicável e controles implementados. Priorizar lacunas por criticidade do requisito e nível de exposição. Transformar gap analysis em planos de remediação com responsáveis, prazos e recursos necessários. Documentar evidências de controles existentes.
+
+3. **Programa de Proteção de Dados Pessoais (LGPD/GDPR)**: Implementar programa completo: mapeamento de fluxos de dados pessoais (ROPA — Records of Processing Activities), bases legais para cada tratamento, avisos de privacidade adequados, mecanismo de atendimento a direitos dos titulares, Privacy Impact Assessment (PIA/DPIA) para novos projetos, processo de notificação de violações, e treinamento regular para colaboradores.
+
+4. **Gestão de Consentimento e Bases Legais**: Para cada categoria de dado pessoal processado, documentar a base legal utilizada (LGPD Art. 7 ou Art. 11 para dados sensíveis). Implementar mecanismo de coleta e gestão de consentimento quando essa for a base legal. Garantir granularidade e revogabilidade do consentimento conforme exigido.
+
+5. **Preparação e Certificação ISO 27001**: Para organizações que buscam certificação: definir escopo do SGSI, conduzir avaliação de risco formal (ISO 27005), criar Declaração de Aplicabilidade, implementar controles prioritários, realizar auditorias internas e análise crítica pela direção antes da auditoria externa. Manter programa de melhoria contínua (não tratar ISO 27001 como projeto pontual).
+
+6. **Programa de Conformidade PCI DSS**: Determinar escopo preciso do CDE, implementar controles dos 12 requisitos aplicáveis, segmentar o CDE da rede corporativa para reduzir escopo, e manter ciclo de monitoramento e testes contínuos. Treinar equipe de TI e negócios nas obrigações PCI.
+
+7. **Coleta e Gestão de Evidências de Conformidade**: Implementar processo sistemático de coleta de evidências de controles para suportar auditorias. Usar ferramentas de GRC (Governance, Risk and Compliance) para centralizar evidências, mapear controles a requisitos e gerar relatórios de status. Manter evidências por período mínimo exigido por cada norma.
 
 ## KPIs do Domínio
 
 | Métrica | Fórmula | Benchmark |
 |---------|---------|-----------|
-| Taxa de conformidade ISO | Controles implementados / Total controles | ≥ 80% (certificação) |
-| Não-conformidades abertas | NC abertas há > 90 dias | 0 NC críticas |
-| Cobertura LGPD | Processos mapeados / Total processos com dados pessoais | 100% |
+| Cobertura de Gap Analysis | (Normas com gap analysis atualizado no último ano / Total de normas aplicáveis) × 100 | 100% |
+| Taxa de Remediação de Gaps Críticos | (Gaps críticos fechados / Total de gaps críticos identificados no período) × 100 | ≥ 90% dentro do prazo |
+| Mapeamento de Fluxos de Dados Pessoais | (Processos com ROPA documentado / Total de processos que tratam dados pessoais) × 100 | ≥ 95% |
+| Tempo de Resposta a Solicitações de Titulares | Média de dias para atender solicitações de direitos dos titulares | ≤ 15 dias (LGPD) |
+| Findings Críticos em Auditoria Externa | Número de não-conformidades críticas identificadas em auditoria | 0 (meta) |
 
 ## Aplicação por Situação
 
-- **S14 (ISO 27001)**: Gap analysis → plano de tratamento → implantação controles → auditoria interna → certificação
-- **S17 (LGPD/GDPR)**: Mapeamento de dados → base legal → DPIA → DPO → plano de adequação
+- **S14 – ISO 27001**: Ao iniciar um projeto de certificação ISO 27001, seguir estas etapas: (1) Definir escopo preciso do SGSI (sistemas, processos, localidades); (2) Realizar avaliação de risco formal seguindo ISO 27005; (3) Selecionar controles do Anexo A baseados nos riscos e elaborar SoA; (4) Implementar controles prioritários com evidências documentadas; (5) Realizar auditoria interna formal; (6) Conduzir análise crítica pela direção; (7) Engajar organismo certificador para Stage 1 (revisão documental) e Stage 2 (auditoria no local). O processo típico dura 12-18 meses para organizações sem SGSI formalizado.
+
+- **S17 – LGPD/GDPR**: Para organizações ainda não conformes, priorizar: mapeamento de todos os tratamentos de dados pessoais (ROPA), identificação de dados sensíveis (art. 5, II da LGPD) com controles reforçados, implementação de mecanismo de atendimento a direitos dos titulares, criação de aviso de privacidade adequado, designação formal do Encarregado/DPO, e implementação de processo de notificação de incidentes. Para organizações que atendem clientes europeus, verificar se o GDPR se aplica e quais adequações adicionais são necessárias (base legal mais restrita, DPIA, transferências internacionais).

@@ -14,6 +14,7 @@ const CollapsibleContext = React.createContext<{
 }>({ open: true, onOpenChange: () => {} });
 
 jest.mock('@/components/ui/collapsible', () => {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   const React = require('react');
   const CollapsibleContext = React.createContext({ open: true, onOpenChange: () => {} });
 

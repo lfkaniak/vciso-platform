@@ -1,0 +1,83 @@
+---
+id: issmp-02
+title: Security Lifecycle Management
+certification: ISSMP
+domainNumber: 2
+keyFrameworks:
+  - ITIL 4
+  - ISO 27001
+  - NIST SP 800-160
+relatedDomains:
+  - cissp-01
+  - cissp-03
+  - cissp-08
+  - issmp-01
+keywords:
+  - ciclo de vida de segurança
+  - gestão de mudanças
+  - gestão de configuração
+  - gestão de ativos de TI
+  - sistemas legados
+  - maturidade de segurança
+  - planejamento de capacidade
+  - gestão de projetos de segurança
+  - integração de segurança
+  - ITAM
+situationClusters:
+  - projects
+  - strategic
+---
+
+## Conceitos Fundamentais
+
+O Domínio 2 do ISSMP foca em como a segurança é integrada e mantida ao longo do ciclo de vida completo de sistemas, projetos e serviços de TI. É o domínio que garante que segurança não seja pensada apenas no momento de design ou implantação, mas seja uma consideração contínua durante toda a operação e eventual decommission de sistemas.
+
+**Ciclo de Vida de Sistemas de Informação**: Todo sistema de informação passa por fases: Iniciação (identificação da necessidade) → Desenvolvimento/Aquisição → Implementação → Operação e Manutenção → Disposição (decommission). O objetivo da segurança no ciclo de vida é garantir que cada fase tenha suas atividades de segurança — desde o levantamento de requisitos de segurança na iniciação até o descarte seguro de dados e hardware.
+
+**Integração de Segurança em Gestão de Projetos**: Projetos de TI frequentemente ignoram segurança até as fases finais, quando mudanças são mais caras. A solução é integrar segurança como parte do processo de projeto: Security Champion designado, security requirements como requisitos formais, aprovação de segurança como gate no processo de aceitação, e revisão de arquitetura de segurança como entregável de projeto.
+
+**Gestão de Configuração e Mudanças (CM/CHM)**: A gestão de configuração mantém o estado conhecido e aprovado de todos os sistemas. Mudanças não controladas são uma causa frequente de incidentes de segurança. O processo de Change Management (ITIL) define como mudanças são solicitadas, avaliadas quanto ao impacto de segurança, aprovadas e implementadas de forma controlada. Change Freeze periods protegem períodos críticos do negócio.
+
+**Sistemas Legados e Gestão de Obsolescência**: Sistemas legados apresentam desafios únicos: ausência de patches, impossibilidade de atualização, protocolos inseguros, e dependências de tecnologias obsoletas. Estratégias: isolamento em rede segregada com controles compensatórios, virtualização para estender vida útil, planejamento formal de migração com prazo, e gestão do risco aceito com documentação formal.
+
+**Gestão do Ciclo de Vida de Tecnologias de Segurança**: As próprias ferramentas de segurança têm ciclos de vida — precisam ser atualizadas, substituídas quando obsoletas e decommissionadas com segurança. O roadmap de tecnologia de segurança deve considerar: vida útil prevista de cada ferramenta, roadmap do fornecedor, integração com o ecossistema, e capacidade da equipe de manter a solução.
+
+**Planejamento de Capacidade de Segurança**: Projetar necessidades futuras de capacidade de segurança com base no crescimento do negócio: número de usuários, volume de logs, cobertura de endpoints, throughput de firewalls. O planejamento de capacidade previne degradação da efetividade de controles quando o negócio cresce mais rápido que a infraestrutura de segurança.
+
+## Frameworks de Referência
+
+- **ITIL 4 (IT Infrastructure Library)**: Framework de melhores práticas para gestão de serviços de TI. As práticas de Gestão de Mudanças, Gestão de Configuração e Ativos de Serviço, Gestão de Releases e Gestão de Problemas são diretamente aplicáveis à segurança. O ITIL 4 enfatiza a integração de segurança como parte natural do gerenciamento de serviços, não como um processo paralelo. As quatro dimensões do ITIL 4 (Organizações e Pessoas, Informação e Tecnologia, Parceiros e Fornecedores, Fluxos de Valor e Processos) fornecem perspectiva holística para segurança.
+
+- **ISO 27001**: A norma exige que a segurança seja considerada no ciclo de vida de desenvolvimento de sistemas (controle A.8.25 em ISO 27001:2022 — Secure development lifecycle), na gestão de mudanças (A.8.32 — Change management) e na gestão de ativos (A.5.9 a A.5.14). O ciclo PDCA (Plan-Do-Check-Act) do SGSI é em si uma metodologia de ciclo de vida para o programa de segurança.
+
+- **NIST SP 800-160**: Guide for Developing Security Plans for Federal Information Systems, com framework para engenharia de sistemas com segurança integrada. Define conceitos de trustworthiness, resiliência e proteção ao longo do ciclo de vida. Enfatiza que segurança deve ser um atributo emergente de sistemas bem engenheirados, não um adendo.
+
+## Controles Principais
+
+1. **Processo Formal de Security Review em Projetos**: Estabelecer portão de segurança obrigatório em projetos de TI com critérios claros de aprovação: revisão de arquitetura completada, requisitos de segurança atendidos, testes de segurança realizados, vulnerabilidades críticas/altas remediadas. Integrar ao processo de PMO existente com critérios de aprovação claros.
+
+2. **Avaliação de Impacto de Segurança em Mudanças**: Implementar critério de classificação de mudanças por impacto de segurança (alto, médio, baixo) e processo de aprovação proporcional. Mudanças de alto impacto de segurança requerem análise pelo arquiteto de segurança. Mudanças de emergência têm processo acelerado mas com revisão de segurança post-implementation.
+
+3. **Gestão do Ciclo de Vida de Ativos de TI (ITAM)**: Manter CMDB com status de ciclo de vida de todos os ativos: supported, extended support, end-of-life (EoL), end-of-support (EoS). Alertar com 12 meses de antecedência para ativos que chegarão ao EoL. Planejar e orçar substituição/atualização como parte do planejamento anual.
+
+4. **Plano de Migração e Decommission Seguro**: Para cada sistema legado identificado, criar plano formal: avaliação de risco de continuar operando, controles compensatórios durante período de transição, prazo e marco de migração, e procedimento de descarte seguro de dados e hardware ao final. Revisar anualmente.
+
+5. **Gestão do Ciclo de Vida de Identidades e Acessos em Sistemas (Joiner-Mover-Leaver)**: Garantir que processos de provisionamento (Joiner), atualização de acesso por mudança de função (Mover) e revogação (Leaver) sejam executados em prazo definido e de forma automatizada. Integrar com RH para disparar eventos automaticamente.
+
+6. **Roadmap de Tecnologia de Segurança**: Desenvolver e manter roadmap das ferramentas de segurança com horizonte de 3 anos: ferramentas a substituir, novas capacidades a adquirir, consolidação de ferramentas sobrepostas. Alinhar ao orçamento e às iniciativas estratégicas do negócio.
+
+7. **Gestão de Conhecimento e Documentação de Sistemas**: Manter documentação atualizada de todos os sistemas críticos: arquitetura, dependências, procedimentos operacionais de segurança, runbooks de resposta a incidentes. A documentação é parte do ciclo de vida e deve ser atualizada como parte de qualquer mudança significativa.
+
+## KPIs do Domínio
+
+| Métrica | Fórmula | Benchmark |
+|---------|---------|-----------|
+| Projetos com Security Gate Aprovado | (Projetos que passaram pelo security gate / Total de projetos de TI encerrados no período) × 100 | 100% para projetos de impacto médio/alto |
+| Ativos em End-of-Life sem Plano de Migração | Contagem de ativos EoL sem plano aprovado | 0 |
+| Mudanças com Incidente de Segurança Associado | (Mudanças que causaram incidente de segurança / Total de mudanças implementadas) × 100 | ≤ 1% |
+| Cobertura da CMDB com Status de Ciclo de Vida | (Ativos com status de ciclo de vida documentado / Total de ativos no inventário) × 100 | ≥ 95% |
+| Tempo de Provisionamento/Desprovisionamento | Horas entre solicitação e execução | Provisioning ≤ 24h; Deprovisioning ≤ 4h |
+
+## Aplicação por Situação
+
+- **S24 – Lifecycle**: Ao assumir a gestão de um programa de segurança, mapear o ciclo de vida de todos os sistemas críticos é uma das primeiras prioridades. Identificar: sistemas em EoL ou próximos de EoL sem plano de migração (risco imediato), projetos em andamento sem security gate integrado (risco futuro), e sistemas legados sem controles compensatórios adequados. Criar um "lifecycle debt register" similar ao risk register, com propriedade, prazo de tratamento e status. Apresentar ao negócio o custo e o risco de manter sistemas obsoletos para obter orçamento para substituições. Integrar o lifecycle management ao processo de planejamento orçamentário anual para garantir que substituições sejam previstas com antecedência suficiente.

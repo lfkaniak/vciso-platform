@@ -1,7 +1,7 @@
 'use client';
 // Source: docs/architecture/fullstack-architecture.md#63-hook-usevciso
 import { useState, useCallback } from 'react';
-import type { UserProfile, SituationClassification, VCISOError } from '@/types/index';
+import type { UserProfile, SituationClassification, VCISOError, TenthManState } from '@/types/index';
 import { fetchDomainContext } from '@/app/actions/getDomainContext';
 
 export interface VCISOState {
@@ -9,24 +9,33 @@ export interface VCISOState {
   isStreaming: boolean;
   isComplete: boolean;
   error: VCISOError | null;
+  tenthManState: TenthManState;
 }
+
+const INITIAL_TENTH_MAN: TenthManState = {
+  isStreaming: false,
+  isComplete: false,
+  content: '',
+};
 
 const INITIAL_STATE: VCISOState = {
   mainContent: '',
   isStreaming: false,
   isComplete: false,
   error: null,
+  tenthManState: INITIAL_TENTH_MAN,
 };
 
-/** Parse SSE data lines into state updates via a callback. */
 async function consumeVCISOStream(
   situation: string,
   profile: UserProfile,
   classification: SituationClassification,
   domainContext: string,
-  onChunk: (chunk: string) => void,
+  onMainChunk: (chunk: string) => void,
+  onTenthChunk: (chunk: string) => void,
   onSignal: (signal: string) => void,
-  onError: (err: VCISOError) => void
+  onError: (err: VCISOError) => void,
+  onTenthError: (code: 'unavailable' | 'timeout') => void
 ) {
   const res = await fetch('/api/vciso', {
     method: 'POST',
@@ -54,7 +63,9 @@ async function consumeVCISOStream(
         if (!data) continue;
 
         if (data.startsWith('M:')) {
-          onChunk(data.slice(2));
+          onMainChunk(data.slice(2));
+        } else if (data.startsWith('T:')) {
+          onTenthChunk(data.slice(2));
         } else if (data === 'S:ERROR:API_UNAVAILABLE') {
           onError({
             code: 'API_UNAVAILABLE',
@@ -62,6 +73,10 @@ async function consumeVCISOStream(
             retryable: true,
           });
           return;
+        } else if (data === 'S:ERROR:TENTH_MAN_TIMEOUT') {
+          onTenthError('timeout');
+        } else if (data === 'S:ERROR:TENTH_MAN_FAILED') {
+          onTenthError('unavailable');
         } else if (data.startsWith('S:ERROR:')) {
           onError({
             code: 'STREAM_INTERRUPTED',
@@ -69,8 +84,12 @@ async function consumeVCISOStream(
             retryable: true,
           });
           return;
-        } else if (data.startsWith('S:')) {
-          onSignal(data.slice(2));
+        } else if (data === 'S:TENTH_DONE') {
+          onSignal('TENTH_DONE');
+        } else if (data === 'S:MAIN_DONE') {
+          onSignal('MAIN_DONE');
+        } else if (data === 'S:COMPLETE') {
+          onSignal('COMPLETE');
         }
       }
     }
@@ -84,20 +103,20 @@ export function useVCISO() {
 
   const reset = useCallback(() => setState(INITIAL_STATE), []);
 
-  /**
-   * Submit a situation with a pre-existing classification (from SituationInput).
-   * Fetches domain context via Server Action, then streams the vCISO response.
-   */
   const submit = useCallback(
     async (situation: string, profile: UserProfile, classification: SituationClassification) => {
-      setState({ mainContent: '', isStreaming: true, isComplete: false, error: null });
+      setState({
+        mainContent: '',
+        isStreaming: true,
+        isComplete: false,
+        error: null,
+        tenthManState: { ...INITIAL_TENTH_MAN, isStreaming: false },
+      });
 
-      // Fetch domain context (Node.js Server Action — avoids edge runtime fs restriction)
       let domainContext = '';
       try {
         domainContext = await fetchDomainContext(classification.relevantDomains);
       } catch {
-        // Non-fatal: proceed without domain context
         console.warn('[useVCISO] fetchDomainContext failed, proceeding without context');
       }
 
@@ -109,20 +128,43 @@ export function useVCISO() {
           profile,
           classification,
           domainContext,
+          // Main chunk
           (chunk) => setState((prev) => ({ ...prev, mainContent: prev.mainContent + chunk })),
+          // Tenth man chunk — activate streaming indicator on first chunk
+          (chunk) =>
+            setState((prev) => ({
+              ...prev,
+              tenthManState: {
+                ...prev.tenthManState,
+                isStreaming: true,
+                content: prev.tenthManState.content + chunk,
+              },
+            })),
+          // Signals
           (signal) => {
             if (signal === 'COMPLETE') {
               streamEnded = true;
               setState((prev) => ({ ...prev, isStreaming: false, isComplete: true }));
+            } else if (signal === 'TENTH_DONE') {
+              setState((prev) => ({
+                ...prev,
+                tenthManState: { ...prev.tenthManState, isStreaming: false, isComplete: true },
+              }));
             }
           },
+          // Main error
           (err) => {
             streamEnded = true;
             setState((prev) => ({ ...prev, isStreaming: false, error: err }));
-          }
+          },
+          // Tenth man error — graceful degradation, never blocks main UI
+          (code) =>
+            setState((prev) => ({
+              ...prev,
+              tenthManState: { ...prev.tenthManState, isStreaming: false, error: code },
+            }))
         );
 
-        // Stream ended without S:COMPLETE → truncated
         if (!streamEnded) {
           setState((prev) => {
             if (!prev.isComplete) return { ...prev, isStreaming: false };

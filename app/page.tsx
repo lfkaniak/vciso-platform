@@ -14,7 +14,7 @@ export default function Home() {
   const [isClassifying, setIsClassifying] = useState(false);
   const [lastSituation, setLastSituation] = useState('');
 
-  const { mainContent, isStreaming, isComplete, error, submit, reset } = useVCISO();
+  const { mainContent, isStreaming, isComplete, error, tenthManState, submit, reset } = useVCISO();
 
   const handleClassification = useCallback(
     (classified: SituationClassification, situation: string) => {
@@ -93,6 +93,7 @@ export default function Home() {
             isStreaming={isStreaming}
             isComplete={isComplete}
             error={error}
+            tenthManState={tenthManState}
           />
         </div>
       )}

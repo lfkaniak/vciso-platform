@@ -1,0 +1,82 @@
+---
+id: cissp-04
+title: Communication and Network Security
+certification: CISSP
+domainNumber: 4
+keyFrameworks:
+  - OSI Model
+  - NIST SP 800-207 Zero Trust
+  - CIS Controls v8
+relatedDomains:
+  - cissp-03
+  - cissp-05
+  - cissp-07
+keywords:
+  - segurança de rede
+  - firewall
+  - VPN
+  - segmentação de rede
+  - protocolo seguro
+  - rede sem fio
+  - criptografia em trânsito
+  - DMZ
+  - IDS IPS
+  - microssegmentação
+situationClusters:
+  - operational
+  - strategic
+---
+
+## Conceitos Fundamentais
+
+O Domínio 4 do CISSP trata do design e proteção de redes de comunicação e das tecnologias usadas para transmitir dados de forma segura. Representa 13% do peso do exame e cobre desde protocolos fundamentais até arquiteturas modernas de segurança de rede.
+
+**Modelo OSI e Segurança por Camada**: O modelo OSI de 7 camadas fornece um framework para entender onde aplicar controles de segurança. Camada 1 (Física) — controles de acesso físico, proteção de cabos; Camada 2 (Enlace) — 802.1X, segurança de switch (port security, DHCP snooping); Camada 3 (Rede) — firewalls de pacote, IPsec, roteamento seguro; Camada 4 (Transporte) — TLS/SSL, controle de portas; Camada 7 (Aplicação) — WAF, proxies de aplicação, filtragem de conteúdo.
+
+**Segmentação de Rede**: A segmentação divide a rede em zonas com diferentes níveis de confiança e controle de tráfego entre elas. DMZ (De-Militarized Zone) hospeda serviços públicos separados da rede interna. VLANs segmentam logicamente redes físicas. Microssegmentação cria segmentos granulares até o nível de carga de trabalho individual, limitando o movimento lateral de atacantes.
+
+**Controles de Perímetro e Defesa em Profundidade**: Firewalls stateful inspecionam o estado das conexões; Next-Generation Firewalls (NGFW) adicionam inspeção de aplicação, IPS e filtragem de URL. IDS/IPS — sistemas de detecção e prevenção de intrusão — monitoram tráfego para identificar padrões maliciosos. Web Application Firewalls (WAF) protegem aplicações web contra OWASP Top 10.
+
+**VPN e Acesso Remoto Seguro**: VPNs criam túneis criptografados sobre redes públicas. IPsec (modo transporte e túnel) opera na camada 3; SSL/TLS VPN opera na camada 7. Split tunneling divide o tráfego entre VPN e internet direta — representa risco se não controlado. Zero Trust Network Access (ZTNA) substitui VPNs tradicionais com acesso baseado em identidade e contexto.
+
+**Segurança Wireless**: O protocolo WPA3 é o padrão atual para redes Wi-Fi — usa SAE (Simultaneous Authentication of Equals) em vez de PSK, resistente a ataques offline de dicionário. WPA2-Enterprise com 802.1X e RADIUS fornece autenticação individual por usuário. Redes wireless corporativas devem ser separadas das redes de visitantes por VLANs distintas.
+
+**Protocolos Seguros vs. Inseguros**: Migrações críticas: HTTP → HTTPS (TLS 1.3), FTP → SFTP/FTPS, Telnet → SSH, SNMPv1/v2 → SNMPv3, HTTP basic auth → OAuth 2.0/OIDC. DNS Security Extensions (DNSSEC) autenticam respostas DNS. HTTPS Everywhere e HSTS previnem downgrade attacks.
+
+## Frameworks de Referência
+
+- **OSI Model**: O modelo de 7 camadas é a base para diagnóstico, design e comunicação sobre segurança de rede. Cada camada possui ameaças e controles específicos. Profissionais de segurança usam o modelo para localizar problemas (ex: "ataque na camada 2 — ARP spoofing"), selecionar controles adequados e entender como protocolos interagem.
+
+- **NIST SP 800-207 Zero Trust**: Descreve a arquitetura Zero Trust para redes, com o princípio fundamental de que localização na rede não confere confiança. O Policy Enforcement Point (PEP) e o Policy Decision Point (PDP) são componentes centrais. Define abordagens de implementação: identity-based, microsegmentation-based e software-defined perimeter (SDP). Recomenda que todas as comunicações sejam autenticadas e criptografadas independente da rede.
+
+- **CIS Controls v8**: Os controles 12 (Gestão de Infraestrutura de Rede), 13 (Monitoramento e Defesa de Rede) e 16 (Segurança de Aplicação) são diretamente aplicáveis. O CIS Control 12 cobre inventário de componentes de rede, configuração segura e gerenciamento de mudanças. O Control 13 cobre defesa de perímetro, filtragem de tráfego e monitoramento de anomalias.
+
+## Controles Principais
+
+1. **Segmentação e Microssegmentação de Rede**: Implementar arquitetura de rede em zonas com diferentes níveis de confiança (Internet, DMZ, Interna, Restrita, Gestão). Usar VLANs e ACLs para separar sistemas por função e sensibilidade. Implementar microssegmentação para cargas de trabalho críticas e ambientes cloud, limitando o raio de impacto de comprometimentos.
+
+2. **Firewalls Next-Generation com IPS**: Implementar NGFWs com inspeção profunda de pacotes (DPI), identificação de aplicações, filtragem de URL por categoria e integração de threat intelligence. Habilitar modo de prevenção no IPS para bloqueio automático de explorações conhecidas. Revisar e otimizar ruleset trimestralmente.
+
+3. **Criptografia de Dados em Trânsito**: Exigir TLS 1.2 mínimo (TLS 1.3 preferencial) para todas as comunicações que trafegam dados sensíveis. Configurar cipher suites seguras (ECDHE, AES-GCM, SHA-256+). Implementar HSTS com preload para aplicações web. Monitorar expiração de certificados e automatizar renovação.
+
+4. **Controle de Acesso à Rede (NAC)**: Implementar 802.1X com servidor RADIUS para autenticar dispositivos antes de conceder acesso à rede. Definir políticas de acesso baseadas em postura de segurança do dispositivo (patch level, antivírus, criptografia de disco). Segmentar automaticamente dispositivos não conformes em VLAN de quarentena.
+
+5. **Monitoramento de Tráfego de Rede (NDR/NTA)**: Implementar solução de Network Detection and Response para análise contínua de tráfego, identificação de comportamentos anômalos e lateral movement. Coletar NetFlow/IPFIX de switches e roteadores. Integrar com SIEM para correlação de eventos.
+
+6. **Gestão Segura de DNS**: Implementar DNSSEC para validação de respostas DNS. Usar DNS Filtering/RPZ (Response Policy Zone) para bloquear domínios maliciosos conhecidos. Monitorar queries DNS para identificar C2 (command and control) e data exfiltration via DNS. Separar resolvers internos de externos.
+
+7. **Eliminação de Protocolos Inseguros**: Inventariar e eliminar uso de Telnet, FTP, SNMPv1/v2, TLS 1.0/1.1, SSL e cifras fracas. Estabelecer prazo formal de migração. Usar ferramentas de scan de vulnerabilidade para detectar protocolos inseguros ativos. Documentar exceções aprovadas com prazo de remediação.
+
+## KPIs do Domínio
+
+| Métrica | Fórmula | Benchmark |
+|---------|---------|-----------|
+| Cobertura de Criptografia em Trânsito | (Conexões com TLS 1.2+ / Total de conexões com dados sensíveis) × 100 | 100% |
+| Protocolos Inseguros Ativos | Número de serviços com protocolos depreciados detectados | 0 (após prazo de migração) |
+| Taxa de Bloqueio pelo IPS | (Tentativas bloqueadas / Total de alertas IPS críticos) × 100 | ≥ 98% em modo prevenção |
+| Tempo de Detecção de Anomalia de Rede (MTTD) | Média de horas entre evento e alerta gerado pelo NDR | ≤ 4 horas |
+| Cobertura de Segmentação | (Sistemas críticos em VLANs/segmentos dedicados / Total de sistemas críticos) × 100 | ≥ 95% |
+
+## Aplicação por Situação
+
+- **S09 – Network Security**: Conduzir revisão abrangente da arquitetura de rede com foco em: inventário de todos os segmentos e fluxos de tráfego autorizados, identificação de lacunas de segmentação, avaliação de regras de firewall (regras desnecessariamente permissivas, regras órfãs), cobertura de criptografia em trânsito, e adoção de protocolos seguros. Priorizar eliminação de vias de movimento lateral entre sistemas críticos. Produzir roadmap de mitigação com priorização por risco. Referenciar NIST SP 800-207 para evolução em direção a Zero Trust e CIS Controls v8 para quick wins de alta efetividade.

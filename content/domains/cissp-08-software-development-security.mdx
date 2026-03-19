@@ -1,0 +1,84 @@
+---
+id: cissp-08
+title: Software Development Security
+certification: CISSP
+domainNumber: 8
+keyFrameworks:
+  - OWASP SAMM
+  - NIST SSDF
+  - SAFECode
+relatedDomains:
+  - cissp-03
+  - cissp-06
+  - issmp-02
+keywords:
+  - segurança no desenvolvimento
+  - SDLC seguro
+  - DevSecOps
+  - análise estática
+  - revisão de código
+  - shift left
+  - secure coding
+  - ciclo de vida de software
+  - supply chain security
+  - OWASP
+situationClusters:
+  - projects
+  - operational
+---
+
+## Conceitos Fundamentais
+
+O Domínio 8 do CISSP trata da incorporação de segurança em cada fase do ciclo de vida de desenvolvimento de software. Representa 10% do peso do exame e é cada vez mais crítico em ambientes onde a velocidade de entrega de software cria pressão para negligenciar segurança.
+
+**SDLC Seguro**: O Secure Software Development Lifecycle integra atividades de segurança em todas as fases: Requisitos (identificar requisitos de segurança e privacidade), Design (threat modeling, revisão de arquitetura), Implementação (secure coding, SAST), Verificação (DAST, penetration test, code review), Release (aprovação de segurança, gestão de configuração segura), Manutenção (gestão de vulnerabilidades, patch management).
+
+**Shift Left Security**: O princípio de "shift left" refere-se a mover atividades de segurança para o início do ciclo de desenvolvimento — detectar e corrigir vulnerabilidades durante design e codificação é 6 a 100 vezes mais barato do que corrigir em produção. Isso significa integrar ferramentas de análise no IDE dos desenvolvedores, automatizar testes de segurança no pipeline de CI/CD e treinar desenvolvedores em secure coding.
+
+**DevSecOps**: Extensão do DevOps que integra segurança como responsabilidade compartilhada ao longo do pipeline de entrega. O modelo de "security as code" trata políticas e controles de segurança como código, sujeito a versionamento e revisão. Implica: security gates automatizados no pipeline, Infrastructure as Code (IaC) com scanning de segurança, e colaboração contínua entre desenvolvimento, operações e segurança.
+
+**Vulnerabilidades de Software**: As vulnerabilidades mais prevalentes são documentadas no OWASP Top 10 para aplicações web (Broken Access Control, Cryptographic Failures, Injection, Insecure Design, Security Misconfiguration, etc.) e no CWE/SANS Top 25 (Buffer Overflow, Improper Input Validation, etc.). Cada categoria tem padrões de código inseguro e seguros correspondentes.
+
+**Supply Chain Security**: A segurança da cadeia de suprimentos de software tornou-se crítica após ataques como SolarWinds e Log4Shell. Inclui: gestão de dependências de terceiros (Software Bill of Materials — SBOM), verificação de integridade de pacotes (assinaturas digitais, hashes), scanning de vulnerabilidades em componentes de terceiros (SCA — Software Composition Analysis) e controles de acesso ao pipeline de CI/CD.
+
+**Segurança de APIs**: APIs são a superfície de ataque mais crescente em aplicações modernas. O OWASP API Security Top 10 documenta as vulnerabilidades mais comuns: Broken Object Level Authorization (BOLA), Broken Authentication, Broken Object Property Level Authorization, Unrestricted Resource Consumption, Broken Function Level Authorization, entre outros. Controles incluem autenticação forte, rate limiting, input validation e logging completo.
+
+## Frameworks de Referência
+
+- **OWASP SAMM (Software Assurance Maturity Model)**: Framework para avaliação e melhoria do programa de segurança de software de uma organização. Organizado em 5 funções de negócio (Governance, Design, Implementation, Verification, Operations) com 15 práticas de segurança, cada uma com 3 níveis de maturidade. Permite benchmarking, roadmap de melhoria e comunicação com stakeholders sobre maturidade de AppSec.
+
+- **NIST SSDF (Secure Software Development Framework — SP 800-218)**: Framework do NIST para práticas de desenvolvimento seguro. Organizado em quatro grupos: Prepare the Organization (PO), Protect the Software (PS), Produce Well-Secured Software (PW), Respond to Vulnerabilities (RV). Tornou-se requisito de facto para fornecedores de software ao governo federal americano e adotado amplamente no setor privado como referência.
+
+- **SAFECode (Software Assurance Forum for Excellence in Code)**: Organização de indústria que publica práticas de desenvolvimento seguro para empresas de software. Os documentos Fundamental Practices for Secure Software Development e Software Integrity Controls detalham práticas como threat modeling, controles de integridade do pipeline de build, gestão segura de dependências e treinamento de desenvolvedores.
+
+## Controles Principais
+
+1. **Security Requirements Engineering**: Incluir requisitos de segurança e privacidade no processo de definição de requisitos de cada projeto ou feature. Usar abuse cases e threat modeling para identificar requisitos negativos (o que o sistema não deve permitir). Rastrear requisitos de segurança ao longo do ciclo de desenvolvimento.
+
+2. **Threat Modeling no Design**: Aplicar threat modeling (STRIDE, PASTA ou LINDDUN para privacidade) durante a fase de design para identificar ameaças arquiteturais e definir controles mitigatórios antes de escrever código. Documentar resultados no design document e atualizar quando a arquitetura mudar.
+
+3. **Security Gates no Pipeline de CI/CD**: Implementar estágios de segurança automatizados no pipeline: SAST para cada pull request (bloqueando merges com vulnerabilidades críticas/altas), SCA para detecção de vulnerabilidades em dependências de terceiros, IaC scanning (Checkov, tfsec) para infraestrutura como código, e secret scanning para credenciais hardcoded.
+
+4. **Treinamento de Secure Coding**: Capacitar desenvolvedores em práticas de secure coding relevantes para as tecnologias que usam. Usar plataformas interativas (OWASP WebGoat, HackTheBox, Secure Code Warrior) em vez de treinamentos puramente teóricos. Medir eficácia por redução de vulnerabilidades introduzidas por equipe treinada.
+
+5. **Software Bill of Materials (SBOM)**: Gerar e manter SBOM para todas as aplicações em produção, documentando componentes de terceiros com versão e licença. Integrar com banco de dados de vulnerabilidades (NVD, OSV) para alertas automáticos quando CVEs afetem componentes em uso. Implementar política de uso de componentes de terceiros com repositório interno aprovado.
+
+6. **Gestão Segura do Pipeline de CI/CD**: Proteger o ambiente de build como um sistema crítico: controle de acesso ao pipeline, assinatura criptográfica de artefatos, imutabilidade de artefatos após build, auditoria de mudanças no pipeline, e separação de ambientes (dev, test, prod). Mitigar ataques de supply chain via verificação de integridade de ferramentas e dependências.
+
+7. **Processo Formal de Aprovação de Segurança para Deploy**: Implementar security sign-off como gate de release para sistemas críticos. Inclui revisão de resultados de testes de segurança, status de remediação de findings, avaliação de impacto de mudança e aprovação formal do CISO ou arquiteto de segurança designado para mudanças de alto risco.
+
+## KPIs do Domínio
+
+| Métrica | Fórmula | Benchmark |
+|---------|---------|-----------|
+| Densidade de Vulnerabilidades por Release | Vulnerabilidades críticas/altas encontradas em teste / KLOC (mil linhas de código) | Tendência decrescente; meta < 1 crítica por release |
+| Cobertura de SAST no Pipeline | (Repositórios com SAST integrado / Total de repositórios ativos) × 100 | ≥ 95% |
+| Tempo Médio para Corrigir Vulnerabilidade de Aplicação (Crítica) | Σ(dias entre abertura e fechamento de vulns críticas) / Total de vulns críticas | ≤ 15 dias |
+| Adoção de Threat Modeling | (Projetos com threat modeling documentado / Total de novos projetos/features significativas) × 100 | ≥ 80% para projetos críticos |
+| Componentes de Terceiros com CVE Crítico em Produção | Contagem de dependências com CVE crítico em produção | 0 após SLA |
+
+## Aplicação por Situação
+
+- **S11 – SDLC**: Ao implementar ou reformar um SDLC seguro, usar OWASP SAMM para avaliar a maturidade atual por prática (Governance, Design, Implementation, Verification, Operations) e definir o nível de maturidade alvo em 12-24 meses. Priorizar práticas de maior impacto: security training para desenvolvedores, SAST/SCA no pipeline CI/CD, e threat modeling para novos projetos. Criar guias de secure coding nas linguagens usadas pela equipe. Medir progresso com densidade de vulnerabilidades por release e taxa de detecção na fase de desenvolvimento vs. produção.
+
+- **S25 – Software Security**: Para revisão de postura de segurança de software em produção, iniciar por SCA (Software Composition Analysis) para identificar componentes com CVEs conhecidos — frequentemente fonte de comprometimentos como Log4Shell. Complementar com DAST nas aplicações expostas externamente. Priorizar remediação por: exposição externa, criticidade do sistema, exploitabilidade do CVE e impacto potencial. Implementar processo de "hot patch" para CVEs críticos explorados ativamente, com prazo de 72 horas para sistemas expostos.

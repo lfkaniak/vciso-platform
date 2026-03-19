@@ -1,0 +1,83 @@
+---
+id: cissp-05
+title: Identity and Access Management
+certification: CISSP
+domainNumber: 5
+keyFrameworks:
+  - NIST SP 800-63
+  - OAuth 2.0/OIDC
+  - MITRE ATT&CK
+relatedDomains:
+  - cissp-03
+  - cissp-04
+  - cissp-07
+  - issmp-03
+keywords:
+  - identidade digital
+  - autenticação
+  - autorização
+  - controle de acesso
+  - MFA
+  - privileged access management
+  - single sign-on
+  - federação de identidade
+  - zero trust
+  - ciclo de vida de identidade
+situationClusters:
+  - operational
+  - compliance
+---
+
+## Conceitos Fundamentais
+
+O Domínio 5 do CISSP trata de como identidades são estabelecidas, verificadas e usadas para controlar acesso a recursos. Representa 13% do peso do exame e é o domínio mais diretamente relacionado à prevenção de acesso não autorizado — a causa raiz de grande parte das violações de dados.
+
+**Identificação, Autenticação e Autorização**: Identificação é a declaração de identidade ("Eu sou X"). Autenticação é a comprovação da identidade declarada. Autorização é a determinação de quais recursos o usuário autenticado pode acessar. Accountability (responsabilização) rastreia ações de usuários autenticados. Os quatro conceitos juntos formam o ciclo IAM.
+
+**Fatores de Autenticação**: Existem três categorias: Algo que você sabe (senha, PIN, resposta a pergunta secreta); Algo que você tem (token, smart card, app authenticator, chave FIDO2); Algo que você é (biometria — impressão digital, reconhecimento facial, voz). MFA combina dois ou mais fatores de categorias diferentes. Autenticação adaptativa considera contexto adicional: localização, dispositivo, horário, comportamento.
+
+**Modelos de Controle de Acesso**: DAC (Discretionary Access Control) — o proprietário do recurso controla o acesso; MAC (Mandatory Access Control) — baseado em classificações e clearances, sem discrição do proprietário; RBAC (Role-Based Access Control) — acesso baseado em papéis funcionais; ABAC (Attribute-Based Access Control) — acesso baseado em atributos do usuário, recurso e ambiente; ReBAC (Relationship-Based) — baseado em relacionamentos entre entidades.
+
+**Ciclo de Vida de Identidade**: As fases incluem: Provisionamento (criação da identidade e atribuição inicial de acesso) → Atualização (mudanças de função/equipe) → Revisão periódica de acesso (recertificação) → Desprovisionamento (desligamento ou mudança de função). Um processo robusto de offboarding é crítico — contas órfãs são vetores frequentes de ataque.
+
+**Privileged Access Management (PAM)**: Contas privilegiadas (administradores de sistema, DBA, contas de serviço) representam o maior risco de comprometimento. Controles PAM incluem: cofre de credenciais, sessão privilegiada gravada com auditoria, just-in-time access (privilégio concedido apenas quando necessário), password vaulting com rotação automática e aprovação de acesso privilegiado.
+
+**Federação de Identidade e SSO**: SAML 2.0, OAuth 2.0 e OpenID Connect (OIDC) são os padrões para federação de identidade. SSO reduz fadiga de senhas mas centraliza o risco — a proteção do IdP é crítica. SCIM (System for Cross-domain Identity Management) automatiza provisionamento/desprovisionamento em sistemas externos.
+
+## Frameworks de Referência
+
+- **NIST SP 800-63**: Define os Digital Identity Guidelines em quatro volumes: 800-63 (visão geral), 800-63A (identity proofing e enrollment), 800-63B (autenticação e gerenciamento de ciclo de vida), 800-63C (federação e assertions). Define três níveis de garantia de identidade (IAL 1-3) e três níveis de garantia de autenticador (AAL 1-3). AAL3 requer autenticador de hardware resistente a phishing (FIDO2/WebAuthn).
+
+- **OAuth 2.0/OIDC**: OAuth 2.0 é o protocolo padrão para autorização delegada — permite que aplicações obtenham acesso limitado a recursos em nome de um usuário sem compartilhar credenciais. OpenID Connect adiciona uma camada de identidade sobre OAuth 2.0, fornecendo tokens de identidade (ID tokens em JWT). Os fluxos principais: Authorization Code (com PKCE para mobile), Client Credentials (machine-to-machine), Device Code.
+
+- **MITRE ATT&CK**: O framework MITRE ATT&CK documenta táticas e técnicas de adversários reais. Para IAM, as categorias mais relevantes são: TA0006 (Credential Access) — Brute Force, Credential Dumping, Pass-the-Hash, Pass-the-Ticket, Kerberoasting; TA0003 (Persistence) — Account Creation, Valid Accounts; TA0004 (Privilege Escalation) — Abuse Elevation Control Mechanism. Usar ATT&CK para mapear controles IAM contra técnicas reais de ataque.
+
+## Controles Principais
+
+1. **Autenticação Multifator (MFA) Universal**: Implementar MFA para todos os acessos a sistemas, com prioridade para: acesso remoto (VPN, ZTNA), e-mail corporativo, sistemas críticos e financeiros, e acessos privilegiados. Preferir autenticadores resistentes a phishing (FIDO2/WebAuthn, smart cards) sobre OTP por SMS. Monitorar e bloquear tentativas de MFA fatigue attack.
+
+2. **Privileged Access Management (PAM)**: Implementar solução PAM com cofre de credenciais, sessão privilegiada monitorada e gravada, just-in-time access para privilégios elevados e aprovação formal para acessos de emergência (break-glass). Eliminar senhas de contas de serviço com rotação manual; usar Managed Service Accounts ou rotação automática.
+
+3. **Processo de Revisão Periódica de Acesso (Access Recertification)**: Implementar revisão formal de acessos trimestralmente para sistemas críticos e semestralmente para demais sistemas. Proprietários de sistemas revisam e aprovam/revogam acessos de seus usuários. Automatizar notificações e escalação para gestores em caso de não resposta.
+
+4. **Processo Formal de Offboarding**: Garantir revogação de todos os acessos (AD/LDAP, aplicações, cloud, VPN, físico) no momento do desligamento — no máximo em 24 horas. Automatizar via integração entre RH/ITSM e IAM. Auditar mensalmente contas de ex-colaboradores.
+
+5. **Gestão de Identidade Não-Humana**: Inventariar e controlar service accounts, API keys, tokens e certificados de máquina. Aplicar menor privilégio a cada identidade não-humana. Implementar rotação automática de credenciais. Eliminar hardcoded credentials em código-fonte e configurações.
+
+6. **Identity Governance e Segregação de Funções (SoD)**: Definir e implementar regras de conflito de funções (SoD) para processos críticos — nenhum indivíduo deve ter acesso completo a um processo financeiro ou crítico de ponta a ponta. Detectar automaticamente violações de SoD durante provisionamento e nas revisões periódicas.
+
+7. **Monitoramento de Comportamento de Identidade (UEBA)**: Implementar User and Entity Behavior Analytics para detectar anomalias: logins fora do horário habitual, acesso a recursos incomuns, volume incomum de downloads, escalação de privilégios suspeita. Integrar com SIEM e gerar alertas de alta fidelidade.
+
+## KPIs do Domínio
+
+| Métrica | Fórmula | Benchmark |
+|---------|---------|-----------|
+| Adoção de MFA | (Contas com MFA ativo / Total de contas ativas) × 100 | 100% para privilegiados; ≥ 95% geral |
+| Contas Órfãs | Contas ativas de ex-colaboradores detectadas | 0 |
+| Cobertura de Revisão de Acesso | (Sistemas críticos com access review no período / Total de sistemas críticos) × 100 | 100% trimestral |
+| Tempo de Desprovisionamento | Horas entre data de desligamento e revogação de todos os acessos | ≤ 4 horas para acessos críticos |
+| Contas com Senha Padrão ou Fraca | Número detectado em scans | 0 |
+
+## Aplicação por Situação
+
+- **S16 – IAM**: Conduzir diagnóstico abrangente do ambiente IAM: inventário de todos os sistemas e seu método de autenticação, identificação de contas sem MFA, mapeamento de contas privilegiadas e sua gestão atual, cobertura de revisão de acesso, e presença de contas órfãs. Priorizar: implementação de MFA para todos os acessos externos e privilegiados (30 dias), PAM para contas de administrador (90 dias), revisão de acesso automatizada (90 dias), e integração de IAM com RH para offboarding automatizado (180 dias). Usar NIST SP 800-63 como referência para requisitos de autenticação por sistema e MITRE ATT&CK para validar que controles mitigam técnicas reais de comprometimento de credenciais.

@@ -1,0 +1,82 @@
+---
+id: issmp-05
+title: Law, Ethics, and Security Compliance
+certification: ISSMP
+domainNumber: 5
+keyFrameworks:
+  - ISC2 Code of Ethics
+  - LGPD Lei 13.709/2018
+  - GDPR Reg. 2016/679
+relatedDomains:
+  - cissp-01
+  - issmp-03
+keywords:
+  - ética profissional
+  - legislação de segurança
+  - cybercrime
+  - propriedade intelectual
+  - privacidade
+  - responsabilidade legal
+  - compliance
+  - conduta profissional
+  - LGPD
+  - investigação computacional
+situationClusters:
+  - compliance
+---
+
+## Conceitos Fundamentais
+
+O Domínio 5 do ISSMP trata dos fundamentos legais, éticos e regulatórios que profissionais de segurança devem conhecer e aplicar. É o domínio que diferencia um profissional técnico de um profissional responsável e íntegro, com consciência das implicações legais de suas ações e obrigações éticas com a sociedade.
+
+**Código de Ética do ISC2**: O Código de Ética do ISC2 é vinculante para todos os detentores de certificações ISC2 (CISSP, ISSMP e outras). Seus quatro cânones, em ordem de prioridade quando há conflito entre eles: (1) Proteger a sociedade, o bem comum, a infraestrutura pública necessária e a confiança e integridade cibernéticas; (2) Agir de forma honrosa, honesta, justa, responsável e legal; (3) Fornecer serviço diligente e competente aos principais interesses; (4) Avançar e proteger a profissão. A ordem importa — em conflito, o cânone de número menor tem precedência.
+
+**Cybercrime e Legislação Brasileira**: O Marco Civil da Internet (Lei 12.965/2014) estabelece princípios, garantias e deveres para o uso da internet no Brasil. A Lei de Crimes Cibernéticos (Lei 12.737/2012, "Lei Carolina Dieckmann") tipifica a invasão de dispositivos informáticos. O Código Penal trata de estelionato, extorsão, falsidade ideológica e outros crimes que podem ocorrer no ambiente digital. A LGPD estabelece sanções administrativas.
+
+**Privacidade como Direito Fundamental**: A privacidade é reconhecida na Constituição Federal de 1988 (Art. 5º, X) como direito fundamental. A LGPD regulamenta o tratamento de dados pessoais em exercício desse direito. O conceito de privacy by design exige que proteção de privacidade seja construída nos sistemas desde o início, não adicionada como camada posterior.
+
+**Propriedade Intelectual no Contexto de Segurança**: Profissionais de segurança frequentemente lidam com código, ferramentas e informações de terceiros. É importante entender: direitos autorais em software (código é obra intelectual protegida), licenças de software (open source, proprietário, uso comercial), segredos comerciais e confidencialidade, patentes de tecnologia, e as implicações de usar ferramentas de hacking (mesmo para fins legítimos de teste).
+
+**Responsabilidade Legal do Profissional de Segurança**: Profissionais de segurança podem ter responsabilidade civil e penal em certas circunstâncias. A negligência profissional pode gerar responsabilidade se o profissional não aplicou o padrão de cuidado razoável. O acesso não autorizado a sistemas — mesmo para fins de teste — pode configurar crime se não houver autorização expressa e documentada. Contratos de pentest com escopo e autorização claros são essenciais.
+
+**Investigação Computacional (Digital Forensics) e Aspectos Legais**: A validade de evidências digitais em processos legais depende de: cadeia de custódia documentada, integridade das evidências (hash antes e depois da coleta), coleta por profissional qualificado, e procedimentos que garantam que evidências não foram alteradas. Evidências coletadas sem autorização adequada podem ser inadmissíveis.
+
+**Whistleblowing e Reporte de Violações**: O profissional de segurança que descobre irregularidades (crimes, violações graves de privacidade, condutas antiéticas) pode ter obrigação ética e legal de reportar. O Cânone 1 do ISC2 (proteger a sociedade) pode prevalecer sobre obrigações de confidencialidade ao empregador em casos de risco público real. Mecanismos de denúncia protegidos (Lei 13.608/2018 no Brasil) devem ser considerados.
+
+## Frameworks de Referência
+
+- **ISC2 Code of Ethics**: Os quatro cânones fornecem um framework de tomada de decisão ética para profissionais de segurança. Casos difíceis de ética frequentemente envolvem conflito entre o cânone 1 (proteger a sociedade) e o cânone 3 (servir ao cliente). A regra é: cânones de menor número têm precedência. Se um empregador solicita algo ilegal ou que prejudica a sociedade, o profissional deve recusar — mesmo que isso prejudique sua relação de emprego.
+
+- **LGPD Lei 13.709/2018**: Define o regime de proteção de dados pessoais no Brasil. Estrutura: princípios do tratamento (Art. 6), bases legais (Arts. 7 e 11), direitos dos titulares (Arts. 17-22), obrigações dos agentes de tratamento (Caps. VI e VII), transferência internacional (Cap. V), proteção de dados de crianças (Art. 14), ANPD como autoridade regulatória (Cap. VIII) e sanções (Art. 52). O Art. 46 exige que controladores e operadores adotem medidas de segurança, técnicas e administrativas, aptas a proteger dados pessoais de acessos não autorizados.
+
+- **GDPR Reg. 2016/679**: Regulamento europeu aplicável extraterritorialmente a organizações que processam dados de residentes da UE. Principais diferenças vs. LGPD: notificação de violação em 72 horas (vs. "prazo razoável" da LGPD); DPIA obrigatória para tratamentos de alto risco; multas de até 4% do faturamento global ou €20 milhões (o maior); direito ao esquecimento mais robusto; e portabilidade de dados mais exigente. O EDPB (European Data Protection Board) emite guidelines vinculantes de interpretação.
+
+## Controles Principais
+
+1. **Programa de Ética e Conduta Profissional**: Implementar código de conduta organizacional de segurança alinhado ao Código de Ética do ISC2. Treinar toda a equipe de segurança anualmente. Criar mecanismo de reporte de dilemas éticos. Estabelecer processo de investigação e resposta a violações éticas.
+
+2. **Autorização Formal para Testes e Atividades Ofensivas**: Garantir autorização escrita e detalhada antes de qualquer teste de penetração, simulação de ataque, scan ou atividade que acesse sistemas de terceiros. O documento deve incluir: escopo exato (IPs, sistemas, períodos), atividades autorizadas e proibidas, contatos de emergência, e assinaturas de representantes autorizados do cliente. Sem autorização documentada, não executar.
+
+3. **Programa de Privacidade e Proteção de Dados**: Conforme detalhado no domínio issmp-03, mas com ênfase na conformidade legal: designação formal do Encarregado/DPO, mapeamento de bases legais para todos os tratamentos, implementação de mecanismo de atendimento a direitos dos titulares dentro dos prazos legais, e processo de notificação de incidentes à ANPD.
+
+4. **Gestão de Cadeia de Custódia para Investigações**: Implementar procedimentos forenses que garantam admissibilidade de evidências: documentar hash de evidências coletadas, manter log de quem teve acesso às evidências e quando, usar cópias forenses (nunca o original) para análise, e documentar metodologia utilizada. Engajar advogados em investigações que possam resultar em processo legal.
+
+5. **Controles de Propriedade Intelectual e Licenciamento**: Implementar processo de aprovação para uso de software (especialmente ferramentas de segurança e componentes open source). Garantir conformidade com licenças de software. Proteger propriedade intelectual própria da organização (code signing, controle de acesso a código-fonte, cláusulas de confidencialidade com colaboradores e fornecedores).
+
+6. **Canal de Denúncia (Whistleblowing)**: Implementar canal de denúncia anônimo e protegido para reporte de violações éticas, legais ou de segurança. Garantir não-retaliação documentada em política. Investigar todas as denúncias de forma estruturada. Reportar ao conselho sobre denúncias relevantes de segurança.
+
+7. **Monitoramento de Mudanças Regulatórias**: Implementar processo de monitoramento de mudanças em legislação e regulamentação relevantes (publicações da ANPD, STJ, publicações do CADE, regulamentações setoriais). Avaliar impacto de novas obrigações e criar planos de adequação. Engajar assessoria jurídica especializada em direito digital.
+
+## KPIs do Domínio
+
+| Métrica | Fórmula | Benchmark |
+|---------|---------|-----------|
+| Taxa de Conclusão de Treinamento em Ética | (Equipe de segurança com treinamento anual concluído / Total da equipe de segurança) × 100 | 100% |
+| Testes com Autorização Formal Documentada | (Testes realizados com autorização escrita / Total de testes realizados) × 100 | 100% |
+| Tempo de Resposta a Direitos dos Titulares | Média de dias para atender solicitações de titulares de dados | ≤ 15 dias (LGPD Art. 19) |
+| Incidentes com Notificação à ANPD Realizada | (Incidentes com dever de notificação que foram notificados / Total) × 100 | 100% |
+| Denúncias no Canal Investigadas | (Denúncias investigadas dentro de 30 dias / Total de denúncias recebidas) × 100 | ≥ 95% |
+
+## Aplicação por Situação
+
+- **S19 – Ethics/Legal**: Quando confrontado com um dilema ético ou questão legal de segurança — como descoberta de sistema de monitoramento ilegal de colaboradores, solicitação de acesso indevido a dados, ou pressão para ocultar uma violação de dados — o profissional de segurança deve: (1) Avaliar pela lente do Cânone 1 (proteger a sociedade) vs. Cânone 3 (servir ao cliente); (2) Documentar o dilema e as evidências; (3) Escalar internamente (juridico, compliance, board) antes de escalar externamente; (4) Buscar orientação jurídica; (5) Se a organização está cometendo algo ilegal ou prejudicando a sociedade e não há resposta interna adequada, avaliar obrigação de notificar autoridades. Em caso de violação de dados com dever de notificação à ANPD, a notificação não é opcional — mesmo que a organização prefira não notificar. O profissional de segurança que colabora para ocultar pode ter responsabilidade pessoal.

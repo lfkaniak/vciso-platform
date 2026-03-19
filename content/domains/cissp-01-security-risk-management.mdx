@@ -8,16 +8,22 @@ keyFrameworks:
   - ISO 31000
   - COBIT 2019
 relatedDomains:
-  - cissp-06
+  - cissp-02
+  - cissp-03
   - issmp-01
+  - issmp-03
+  - issmp-06
 keywords:
-  - risco
-  - governança
-  - política
-  - compliance
   - gestão de risco
-  - BIA
-  - ALE
+  - política de segurança
+  - governança
+  - conformidade
+  - ética
+  - continuidade de negócios
+  - classificação de risco
+  - apetite ao risco
+  - risco residual
+  - segurança da informação
 situationClusters:
   - strategic
   - compliance
@@ -25,34 +31,65 @@ situationClusters:
 
 ## Conceitos Fundamentais
 
-Gestão de Segurança e Riscos abrange a identificação, análise e tratamento de riscos à informação. Inclui governança, conformidade regulatória, ética profissional e princípios legais.
+O Domínio 1 do CISSP estabelece a base filosófica e estrutural de toda a prática de segurança da informação. É o domínio mais abrangente do exame, representando 15% do peso total, e trata dos princípios que orientam decisões de segurança em nível organizacional.
+
+**Tríade CIA**: A Confidencialidade, Integridade e Disponibilidade formam o alicerce de qualquer programa de segurança. Confidencialidade previne divulgação não autorizada; integridade garante que dados não foram alterados de forma indevida; disponibilidade assegura que sistemas e dados estejam acessíveis quando necessário. Cada controle implementado deve ser avaliado contra esses três pilares.
+
+**Governança de Segurança**: A governança define como as decisões de segurança são tomadas, quem é responsável e como o desempenho é medido. Envolve a criação de políticas, normas, procedimentos e diretrizes que alinham a segurança aos objetivos do negócio. O CISO ou vCISO é o responsável pela liderança desse processo, mas a propriedade do risco deve residir nos gestores de negócio.
+
+**Gestão de Risco**: Risco é a combinação de ameaça, vulnerabilidade e impacto. A gestão de risco envolve identificar, analisar, avaliar e tratar riscos de forma sistemática. Os quatro tratamentos possíveis são: mitigação (reduzir a probabilidade ou impacto), transferência (seguros, terceiros), aceitação (risco residual tolerável) e evitação (eliminar a atividade).
+
+**Conformidade e Ética**: O domínio abrange obrigações legais, regulatórias e contratuais que impactam a segurança, incluindo propriedade intelectual, privacidade de dados e investigações computacionais. O Código de Ética do ISC2 é vinculante para todos os profissionais certificados: Proteger a sociedade, o bem comum e a infraestrutura; Agir de forma honrosa, justa e responsável; Prover serviço diligente e competente; Avançar e proteger a profissão.
+
+**Continuidade de Negócios**: O BCP (Business Continuity Plan) e o DRP (Disaster Recovery Plan) garantem resiliência organizacional. O BIA (Business Impact Analysis) identifica processos críticos, define RTOs (Recovery Time Objective) e RPOs (Recovery Point Objective) para cada processo. A diferença essencial: BCP foca em manter operações durante um desastre; DRP foca em restaurar sistemas de TI após o desastre.
+
+**Análise de Risco Quantitativa e Qualitativa**: A análise quantitativa usa valores monetários — SLE (Single Loss Expectancy = Valor do ativo × Fator de exposição), ARO (Annual Rate of Occurrence) e ALE (Annual Loss Expectancy = SLE × ARO). A análise qualitativa usa matrizes de probabilidade × impacto com escalas ordinais.
 
 ## Frameworks de Referência
 
-- **NIST RMF**: Categorize → Select → Implement → Assess → Authorize → Monitor
-- **ISO 31000**: Contexto → Identificação → Análise → Avaliação → Tratamento
-- **COBIT 2019**: Alinhamento negócio-TI, governança corporativa de TI
+- **NIST RMF (Risk Management Framework)**: Define seis etapas cíclicas — Categorizar (FIPS 199), Selecionar (NIST SP 800-53), Implementar, Avaliar (NIST SP 800-53A), Autorizar e Monitorar — para gerir riscos de sistemas. O NIST SP 800-37 Rev. 2 é o documento base. Cada sistema passa por uma Autorização de Operação (ATO) formal antes de entrar em produção. Integra-se ao Cybersecurity Framework (CSF) e ao NIST Privacy Framework.
+
+- **ISO 31000**: Padrão internacional de gestão de riscos agnóstico a setor. Define o processo como: comunicação e consulta → estabelecimento do contexto, escopo e critérios → avaliação de risco (identificação, análise, avaliação) → tratamento → monitoramento e revisão → registro e reporte. Complementado pela ISO 31010 para técnicas de avaliação (FMEA, bow-tie, Monte Carlo, etc.) e IEC 31010 para técnicas específicas.
+
+- **COBIT 2019**: Framework de governança e gestão de TI do ISACA que alinha TI aos objetivos de negócio através de cascata de objetivos. Define 40 objetivos de governança e gestão em domínios: Avaliar, Dirigir e Monitorar (EDM); Alinhar, Planejar e Organizar (APO); Construir, Adquirir e Implementar (BAI); Entregar, Servir e Suportar (DSS); Monitorar, Avaliar e Analisar (MEA). Os fatores de design permitem customização para cada organização.
 
 ## Controles Principais
 
-1. Política de Segurança da Informação (PSI)
-2. Análise de Impacto nos Negócios (BIA)
-3. Avaliação Quantitativa de Riscos (ALE = ARO × SLE)
-4. Gestão de Conformidade Regulatória
-5. Programa de Conscientização em Segurança
+1. **Política de Segurança da Informação**: Documento de alto nível aprovado pela alta direção que declara o compromisso da organização com a segurança, define escopo, responsabilidades e princípios gerais. Deve ser revisada anualmente e após mudanças significativas no negócio, regulação ou ambiente de ameaças.
+
+2. **Processo Formal de Gestão de Risco**: Implementar ciclo contínuo de identificação, análise qualitativa e quantitativa, avaliação, tratamento e monitoramento de riscos. Manter registro de riscos (risk register) atualizado com proprietários, datas de revisão e status dos planos de tratamento. Definir apetite ao risco e tolerância ao risco formalmente aprovados pelo conselho.
+
+3. **Classificação de Dados**: Estabelecer esquema de classificação alinhado ao negócio (ex: Público, Interno, Confidencial, Restrito) com controles proporcionais a cada nível. Treinamento obrigatório para todos os usuários que manuseiam dados classificados. O proprietário dos dados é responsável por classificar e autorizar acesso.
+
+4. **Programa de Treinamento e Conscientização (SETA)**: Implementar programa de Security Education, Training and Awareness com módulos obrigatórios anuais para todos os colaboradores, treinamentos específicos por função (desenvolvedor, administrador, executivo) e exercícios de phishing simulado trimestrais. Medir eficácia com taxa de clique em simulações e resultados de avaliações.
+
+5. **Plano de Continuidade de Negócios (BCP)**: Documentar processos críticos com RTOs e RPOs definidos pelo BIA. Realizar testes anuais (tabletop exercise, functional drill, full-interruption test) e manter plano atualizado após cada mudança significativa. Identificar dependências de terceiros críticos e garantir planos de contingência para cada um.
+
+6. **Gestão de Conformidade Regulatória**: Manter inventário atualizado de todas as obrigações legais, regulatórias e contratuais (LGPD, ISO 27001, PCI DSS, SOX, etc.). Realizar avaliações periódicas de gap e formalizar planos de remediação com responsáveis e prazos. Monitorar mudanças regulatórias com alertas automatizados.
+
+7. **Programa de Gestão de Risco de Terceiros (TPRM)**: Avaliar riscos de segurança antes de contratar fornecedores que acessam dados ou sistemas críticos. Incluir cláusulas de segurança, direito de auditoria e notificação de incidentes em contratos. Realizar due diligence anual e exigir evidências de controles (SOC 2 Type II, ISO 27001, questionários padronizados).
+
+8. **Estrutura de Comitê de Segurança**: Estabelecer fórum de governança com representantes de TI, negócio, jurídico e RH para tomar decisões de segurança, aprovar políticas, monitorar riscos estratégicos e revisar incidentes significativos. Reuniões mensais com pauta estruturada e atas formais.
 
 ## KPIs do Domínio
 
 | Métrica | Fórmula | Benchmark |
 |---------|---------|-----------|
-| ALE (Perda Anual Esperada) | ARO × SLE | < 5% do orçamento de TI |
-| Cobertura de políticas | Políticas ativas / Políticas necessárias | ≥ 95% |
-| Treinamentos concluídos | Colaboradores treinados / Total | ≥ 90% |
+| Cobertura do Risk Register | (Riscos identificados e documentados / Ativos críticos mapeados) × 100 | ≥ 95% |
+| Taxa de Conclusão de Treinamento | (Colaboradores que completaram SETA / Total de colaboradores) × 100 | ≥ 98% anual |
+| Risco Residual dentro do Apetite | (Riscos com score ≤ apetite / Total de riscos no registro) × 100 | ≥ 85% |
+| Conformidade com Políticas | (Controles avaliados como conformes / Total de controles auditados) × 100 | ≥ 90% |
+| Tempo Médio para Tratamento de Risco Crítico | Σ(dias para fechar riscos críticos) / Número de riscos críticos fechados | ≤ 30 dias |
+| Frequência de Atualização do BCP/DRP | Dias desde última revisão testada e aprovada | ≤ 365 dias |
 
 ## Aplicação por Situação
 
-- **S07 (Board Report)**: Comunicar riscos residuais em linguagem executiva, ALE, ROI de segurança
-- **S08 (Budget)**: Justificar investimentos com análise custo-benefício e ALE
-- **S12 (Programa do zero)**: Estruturar PSI, BIA, gestão de riscos desde a base
-- **S20 (Políticas)**: Desenvolver e implementar framework de políticas
-- **S26 (Relatório mensal)**: Métricas de risco, conformidade, indicadores de maturidade
+- **S07 – Board Report**: Traduzir riscos técnicos em impacto financeiro e de reputação usando ALE. Apresentar top 5 riscos com status de tratamento, tendência YoY de exposição e comparação entre apetite ao risco declarado e postura atual. Usar COBIT 2019 como referência para métricas de governança e linguagem executiva. Incluir indicadores de conformidade regulatória e posição competitiva de segurança.
+
+- **S08 – Budget**: Embasar solicitações orçamentárias em análise quantitativa de risco (ALE = SLE × ARO) e ROI de controles. Priorizar investimentos pelos riscos de maior exposição financeira. Demonstrar custo da não conformidade (multas LGPD de até 2% do faturamento, custos de breach) contra custo dos controles. Comparar com benchmarks do setor (ENISA, Gartner).
+
+- **S12 – Programa do zero**: Iniciar com diagnóstico de maturidade usando NIST CSF (Identify, Protect, Detect, Respond, Recover) ou CMMI. Definir escopo, apetite ao risco e estrutura de governança antes de selecionar controles. Criar roadmap faseado: quick wins em 90 dias (políticas, inventário, treinamento), consolidação em 12 meses (controles técnicos, processos), maturação em 24 meses (automação, métricas avançadas).
+
+- **S20 – Políticas**: Desenvolver hierarquia formal de documentos: política (o quê e por quê) → norma (padrões mensuráveis) → procedimento (como fazer) → diretriz (recomendações). Garantir aprovação pela alta direção, processo de revisão periódica documentado, distribuição rastreável e mecanismo de aceite formal. Referenciar ISO 27001 Anexo A.5 para conteúdo mínimo.
+
+- **S26 – Relatório mensal**: Estruturar relatório com dashboard executivo em formato semáforo por domínio de segurança, sumário de incidentes do mês com tendência, status de riscos abertos por criticidade, métricas de treinamento e compliance, e ações pendentes com responsáveis e prazos. Manter formato consistente para análise de tendência trimestral e anual.

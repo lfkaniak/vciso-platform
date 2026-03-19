@@ -50,6 +50,17 @@ export function getAllDomains(): ISC2Domain[] {
     .filter((d): d is ISC2Domain => d !== null);
 }
 
+export function searchDomains(keyword: string): ISC2Domain[] {
+  if (!keyword.trim()) return [];
+  const lower = keyword.toLowerCase();
+  return getAllDomains().filter(
+    (d) =>
+      d.title.toLowerCase().includes(lower) ||
+      d.keywords.some((k) => k.toLowerCase().includes(lower)) ||
+      d.id.toLowerCase().includes(lower)
+  );
+}
+
 export function getDomainContext(ids: string[]): string {
   return ids
     .map((id) => {

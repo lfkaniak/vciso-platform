@@ -1,0 +1,152 @@
+[
+  {
+    "id": "data-breach-00-01",
+    "phase": "0-30min",
+    "order": 1,
+    "title": "Confirmar e documentar o vazamento",
+    "description": "Verifique se é um vazamento real (não um falso positivo). Documente: o que foi exposto, volume aproximado de registros, sistemas afetados e como foi descoberto. Esta documentação será essencial para a notificação regulatória.",
+    "owner": "TI",
+    "completionCriteria": "Vazamento confirmado com evidências. Documentação inicial criada: o quê, quando, como e volume estimado de dados expostos.",
+    "relatedDomain": "cissp-02"
+  },
+  {
+    "id": "data-breach-00-02",
+    "phase": "0-30min",
+    "order": 2,
+    "title": "Conter o vazamento imediatamente",
+    "description": "Interrompa o vazamento ativo: revogue credenciais comprometidas, bloqueie APIs expostas, feche portas abertas inadvertidamente, remova arquivos de locais públicos. Contenção precede investigação.",
+    "owner": "TI",
+    "completionCriteria": "Vetor de vazamento bloqueado e confirmado. Acesso não autorizado revogado. Log de ações de contenção registrado.",
+    "relatedDomain": "cissp-07"
+  },
+  {
+    "id": "data-breach-00-03",
+    "phase": "0-30min",
+    "order": 3,
+    "title": "Classificar os dados expostos",
+    "description": "Identifique a natureza dos dados expostos: dados pessoais (nome, CPF, e-mail), dados sensíveis (saúde, biometria, financeiro), segredos comerciais, dados de menores. A classificação define a urgência da notificação.",
+    "owner": "Jurídico",
+    "completionCriteria": "Inventário de dados expostos classificado por categoria e sensibilidade. Estimativa de titulares afetados documentada.",
+    "relatedDomain": "cissp-02"
+  },
+  {
+    "id": "data-breach-00-04",
+    "phase": "0-30min",
+    "order": 4,
+    "title": "Acionar DPO e equipe jurídica",
+    "description": "Notifique imediatamente o DPO (Data Protection Officer) e a equipe jurídica. A LGPD exige notificação à ANPD em prazo razoável (interpretado como até 72h). O relógio está contando a partir da descoberta.",
+    "owner": "CISO",
+    "completionCriteria": "DPO notificado. Advogados de privacidade acionados. Registro de data/hora de descoberta oficializado.",
+    "relatedDomain": "issmp-03"
+  },
+  {
+    "id": "data-breach-00-05",
+    "phase": "0-30min",
+    "order": 5,
+    "title": "Preservar evidências e logs",
+    "description": "Preserve todos os logs de acesso, logs de API, registros de banco de dados e qualquer evidência do vazamento ANTES de qualquer remediação. Calcule hashes das evidências para garantir integridade forense.",
+    "owner": "TI",
+    "completionCriteria": "Logs preservados em local seguro com hashes calculados. Chain of custody documentada. Nenhuma evidência alterada.",
+    "relatedDomain": "cissp-06"
+  },
+  {
+    "id": "data-breach-24-01",
+    "phase": "24h",
+    "order": 1,
+    "title": "Conduzir análise forense completa",
+    "description": "Investigue o vetor de entrada, a extensão do acesso não autorizado e se os dados foram exfiltrados ou apenas expostos. Determine se outros sistemas foram afetados além dos identificados inicialmente.",
+    "owner": "TI",
+    "completionCriteria": "Relatório forense preliminar concluído. Escopo definitivo do vazamento estabelecido. Timeline do incidente reconstruída.",
+    "relatedDomain": "cissp-06"
+  },
+  {
+    "id": "data-breach-24-02",
+    "phase": "24h",
+    "order": 2,
+    "title": "Avaliar obrigação de notificar titulares",
+    "description": "Com base nos dados expostos e no risco aos titulares, avalie se a notificação individual é obrigatória. Critério LGPD: risco ou dano relevante aos titulares. Prepare o conteúdo da notificação com Jurídico.",
+    "owner": "Jurídico",
+    "completionCriteria": "Decisão de notificação aos titulares documentada com fundamentação. Rascunho de comunicação aos titulares aprovado.",
+    "relatedDomain": "issmp-05"
+  },
+  {
+    "id": "data-breach-24-03",
+    "phase": "24h",
+    "order": 3,
+    "title": "Notificar a ANPD (se obrigatório)",
+    "description": "Submeta a notificação preliminar à ANPD via portal gov.br. Inclua: natureza dos dados, número aproximado de titulares, medidas adotadas e contato do DPO. Uma notificação incompleta é melhor que uma ausente.",
+    "owner": "Jurídico",
+    "completionCriteria": "Notificação enviada à ANPD. Protocolo de envio arquivado. Calendário de relatório complementar definido.",
+    "relatedDomain": "issmp-03"
+  },
+  {
+    "id": "data-breach-24-04",
+    "phase": "24h",
+    "order": 4,
+    "title": "Verificar e reforçar controles de acesso",
+    "description": "Audite todos os controles de acesso aos sistemas afetados. Revogue privilégios excessivos, implemente revisão de acessos emergencial, ative logs de auditoria mais detalhados.",
+    "owner": "TI",
+    "completionCriteria": "Auditoria de acessos concluída. Privilégios excessivos revogados. Logs de auditoria expandidos e ativos.",
+    "relatedDomain": "cissp-05"
+  },
+  {
+    "id": "data-breach-24-05",
+    "phase": "24h",
+    "order": 5,
+    "title": "Comunicar clientes e parceiros afetados",
+    "description": "Notifique proativamente clientes e parceiros cujos dados foram expostos, antes que descubram por outros meios. Seja transparente sobre o que ocorreu, o que foi exposto e as medidas tomadas.",
+    "owner": "Comunicação",
+    "completionCriteria": "Comunicados enviados aos clientes e parceiros afetados. Canal de suporte dedicado ativo. Template de resposta a perguntas frequentes disponível.",
+    "relatedDomain": "issmp-01"
+  },
+  {
+    "id": "data-breach-72-01",
+    "phase": "72h",
+    "order": 1,
+    "title": "Implementar correções definitivas",
+    "description": "Aplique as correções de segurança definitivas que causaram o vazamento: patches, configurações seguras, atualização de credenciais comprometidas, criptografia de dados em repouso e em trânsito.",
+    "owner": "TI",
+    "completionCriteria": "Todas as vulnerabilidades exploradas corrigidas. Scan de segurança pós-correção executado com zero críticos. Ambientes de homologação e produção validados.",
+    "relatedDomain": "cissp-08"
+  },
+  {
+    "id": "data-breach-72-02",
+    "phase": "72h",
+    "order": 2,
+    "title": "Submeter relatório complementar à ANPD",
+    "description": "Envie o relatório complementar à ANPD com detalhamentos adicionais: análise forense completa, lista definitiva de dados afetados, ações corretivas implementadas e cronograma de melhorias.",
+    "owner": "Jurídico",
+    "completionCriteria": "Relatório complementar à ANPD submetido. Confirmação de recebimento arquivada. Toda documentação retida por prazo legal.",
+    "relatedDomain": "issmp-03"
+  },
+  {
+    "id": "data-breach-72-03",
+    "phase": "72h",
+    "order": 3,
+    "title": "Revisar e atualizar o RIPD",
+    "description": "Atualize o Relatório de Impacto à Proteção de Dados (RIPD) para os processos afetados. Documente as novas medidas de segurança implementadas e reavalie os riscos residuais.",
+    "owner": "Jurídico",
+    "completionCriteria": "RIPD atualizado e aprovado pelo DPO. Novos controles documentados. Risco residual reavaliado e aceito pela liderança.",
+    "relatedDomain": "issmp-03"
+  },
+  {
+    "id": "data-breach-72-04",
+    "phase": "72h",
+    "order": 4,
+    "title": "Realizar post-mortem sem culpa",
+    "description": "Conduza o post-mortem formal: o que aconteceu, por que os controles falharam, o que foi feito corretamente e lições aprendidas. Elabore plano de ação com responsáveis, prazos e métricas de verificação.",
+    "owner": "CISO",
+    "completionCriteria": "Post-mortem concluído. Plano de ação aprovado pela liderança. Próxima revisão agendada em 30 dias.",
+    "relatedDomain": "issmp-02"
+  },
+  {
+    "id": "data-breach-72-05",
+    "phase": "72h",
+    "order": 5,
+    "title": "Fortalecer programa de proteção de dados",
+    "description": "Implemente melhorias estruturais: treinamento de conscientização sobre proteção de dados, Privacy by Design no processo de desenvolvimento, inventário de dados atualizado e controles de DLP.",
+    "owner": "CISO",
+    "completionCriteria": "Programa de proteção de dados revisado e fortalecido. Treinamento agendado para todos os colaboradores. Controles de DLP implementados.",
+    "relatedDomain": "cissp-02"
+  }
+]

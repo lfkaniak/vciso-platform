@@ -113,16 +113,11 @@ export async function POST(request: NextRequest) {
                 if (!tenthDone) {
                   await writer.write(sseSignal('TENTH_DONE'));
                 }
-              } catch (err) {
+              } catch {
                 if (tenthManTimeout) clearTimeout(tenthManTimeout);
-                const status = getApiErrorStatus(err);
                 if (!tenthDone) {
                   try {
-                    await writer.write(
-                      status === 529 || status === 503
-                        ? sseError('TENTH_MAN_FAILED')
-                        : sseError('TENTH_MAN_FAILED')
-                    );
+                    await writer.write(sseError('TENTH_MAN_FAILED'));
                   } catch { /* ignore */ }
                 }
               } finally {

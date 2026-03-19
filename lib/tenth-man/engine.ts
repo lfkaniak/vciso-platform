@@ -1,7 +1,7 @@
 // Source: docs/architecture/fullstack-architecture.md#adr-05
 // Tenth Man trigger logic — 300-token threshold for adversarial context
 
-const TRIGGER_THRESHOLD = 300; // chars (~300 tokens), per ADR-05
+const TRIGGER_THRESHOLD = 300; // chars as proxy (~75-100 tokens for PT-BR text), per ADR-05
 
 /**
  * Returns true when enough main response has accumulated to derive adversarial context.

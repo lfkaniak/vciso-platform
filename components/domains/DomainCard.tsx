@@ -34,7 +34,7 @@ const DOMAIN_ICONS: Record<string, string> = {
   'issmp-02': '🔄',
   'issmp-03': '📋',
   'issmp-04': '🚨',
-  'issmp-05': '⚖️',
+  'issmp-05': '📜',
   'issmp-06': '📊',
 };
 
@@ -48,39 +48,42 @@ export function DomainCard({ domain, highlight }: DomainCardProps) {
   const certStyle = CERT_STYLES[domain.certification] ?? 'border-zinc-700 bg-zinc-800 text-zinc-300';
 
   return (
-    <Link
-      href={`/domains/${domain.id}`}
-      role="article"
+    <article
       aria-label={`Domínio ${domain.domainNumber}: ${domain.title}`}
-      className="group flex flex-col gap-3 rounded-lg border border-zinc-800 bg-zinc-900/60 p-4 transition-colors hover:border-zinc-600 hover:bg-zinc-900"
+      className="group rounded-lg border border-zinc-800 bg-zinc-900/60 transition-colors hover:border-zinc-600 hover:bg-zinc-900"
     >
-      {/* Header: icon + certification badge */}
-      <div className="flex items-center justify-between">
-        <span className="text-2xl" aria-hidden="true">{icon}</span>
-        <span
-          className={`rounded-full border px-2 py-0.5 text-xs font-semibold ${certStyle}`}
-          aria-label={`Certificação: ${domain.certification}`}
-        >
-          {domain.certification}
-        </span>
-      </div>
+      <Link
+        href={`/domains/${domain.id}`}
+        className="flex flex-col gap-3 p-4"
+      >
+        {/* Header: icon + certification badge */}
+        <div className="flex items-center justify-between">
+          <span className="text-2xl" aria-hidden="true">{icon}</span>
+          <span
+            className={`rounded-full border px-2 py-0.5 text-xs font-semibold ${certStyle}`}
+            aria-label={`Certificação: ${domain.certification}`}
+          >
+            {domain.certification}
+          </span>
+        </div>
 
-      {/* Domain number + title */}
-      <div>
-        <p className="text-xs text-zinc-500">Domínio {domain.domainNumber}</p>
-        <h3 className="mt-0.5 text-sm font-semibold text-zinc-100 group-hover:text-white">
-          <HighlightText text={domain.title} keyword={highlight} />
-        </h3>
-      </div>
+        {/* Domain number + title */}
+        <div>
+          <p className="text-xs text-zinc-500">Domínio {domain.domainNumber}</p>
+          <h3 className="mt-0.5 text-sm font-semibold text-zinc-100 group-hover:text-white">
+            <HighlightText text={domain.title} keyword={highlight} />
+          </h3>
+        </div>
 
-      {/* Key frameworks */}
-      <ul className="flex flex-col gap-1" aria-label="Frameworks principais">
-        {domain.keyFrameworks.slice(0, 3).map((fw) => (
-          <li key={fw} className="text-xs text-zinc-500 before:mr-1 before:content-['·']">
-            {fw}
-          </li>
-        ))}
-      </ul>
-    </Link>
+        {/* Key frameworks */}
+        <ul className="flex flex-col gap-1" aria-label="Frameworks principais">
+          {domain.keyFrameworks.slice(0, 3).map((fw) => (
+            <li key={fw} className="text-xs text-zinc-500 before:mr-1 before:content-['·']">
+              {fw}
+            </li>
+          ))}
+        </ul>
+      </Link>
+    </article>
   );
 }

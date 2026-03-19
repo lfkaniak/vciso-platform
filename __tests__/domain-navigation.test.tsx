@@ -61,7 +61,7 @@ jest.mock('@/lib/knowledge/domains', () => ({
 }));
 
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { DomainCard } from '@/components/domains/DomainCard';
 import { DomainGrid } from '@/components/domains/DomainGrid';
 import DomainsPage from '@/app/domains/page';
@@ -160,8 +160,9 @@ describe('DomainCard', () => {
 
   it('link aponta para /domains/{id}', () => {
     render(<DomainCard domain={cisssDomain} />);
-    const link = screen.getByRole('article');
-    expect(link.tagName).toBe('A');
+    const article = screen.getByRole('article');
+    expect(article.tagName).toBe('ARTICLE');
+    const link = within(article).getByRole('link');
     expect(link).toHaveAttribute('href', '/domains/cissp-01');
   });
 });

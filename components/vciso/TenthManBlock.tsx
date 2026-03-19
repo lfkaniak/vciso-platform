@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { ShieldAlert, ChevronDown, Info } from 'lucide-react';
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible';
@@ -37,10 +37,6 @@ function TenthManSkeleton() {
 
 export function TenthManBlock({ state, defaultExpanded = true }: TenthManBlockProps) {
   const [open, setOpen] = useState(defaultExpanded);
-
-  useEffect(() => {
-    setOpen(defaultExpanded);
-  }, [defaultExpanded]);
 
   const hasContent = state.content.trim().length > 0;
   const showContent = hasContent || state.isStreaming || !!state.error;
@@ -81,7 +77,6 @@ export function TenthManBlock({ state, defaultExpanded = true }: TenthManBlockPr
           {/* Collapse toggle — AC5, Task 5.3 */}
           <CollapsibleTrigger
             aria-expanded={open}
-            aria-controls="tenth-man-content"
             className="ml-2 shrink-0 text-red-500 hover:text-red-300 focus:outline-none focus:ring-1 focus:ring-red-400 rounded"
           >
             <ChevronDown

@@ -3,8 +3,9 @@
  */
 // Story 4.1 — Situation Library tests
 
+const mockPush = jest.fn();
 jest.mock('next/navigation', () => ({
-  useRouter: () => ({ push: jest.fn() }),
+  useRouter: () => ({ push: mockPush }),
 }));
 
 import React from 'react';
@@ -148,10 +149,10 @@ describe('SituationCard', () => {
     expect(screen.getByText('cissp-07')).toBeInTheDocument();
   });
 
-  it('chama router.push ao clicar', () => {
+  it('chama router.push com /?situation=S01 ao clicar', () => {
+    mockPush.mockClear();
     render(<SituationCard situation={highSituation} />);
     fireEvent.click(screen.getByRole('button'));
-    // useRouter mock registered the push call (mock defined at top of file)
-    expect(screen.getByRole('button')).toBeInTheDocument();
+    expect(mockPush).toHaveBeenCalledWith('/?situation=S01');
   });
 });

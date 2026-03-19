@@ -1,0 +1,162 @@
+[
+  {
+    "id": "ransomware-00-01",
+    "phase": "0-30min",
+    "order": 1,
+    "title": "Isolar sistemas comprometidos da rede",
+    "description": "Desconecte imediatamente os sistemas afetados da rede corporativa (cabo, Wi-Fi, VPN). Não desligue os servidores — preserve a memória RAM para análise forense posterior.",
+    "owner": "TI",
+    "completionCriteria": "Sistemas comprometidos isolados da rede sem desligamento. Log de isolamento registrado com timestamp.",
+    "relatedDomain": "cissp-07"
+  },
+  {
+    "id": "ransomware-00-02",
+    "phase": "0-30min",
+    "order": 2,
+    "title": "Acionar o time de resposta a incidentes",
+    "description": "Convoque o IRT (Incident Response Team): CISO, TI, Jurídico e, se necessário, a empresa de IR contratada. Abra um canal seguro de comunicação (ex: Signal) — evite e-mail corporativo que pode estar comprometido.",
+    "owner": "CISO",
+    "completionCriteria": "IRT convocado e canal seguro de comunicação estabelecido. Lista de participantes registrada.",
+    "relatedDomain": "cissp-07"
+  },
+  {
+    "id": "ransomware-00-03",
+    "phase": "0-30min",
+    "order": 3,
+    "title": "Avaliar escopo do comprometimento",
+    "description": "Mapeie quais sistemas, volumes e dados foram afetados. Verifique se backups estão acessíveis e não comprometidos. Documente o ransom note e qualquer IOC (Indicator of Compromise) visível.",
+    "owner": "TI",
+    "completionCriteria": "Mapa de sistemas afetados documentado. Status de backups verificado. Ransom note fotografado/copiado.",
+    "relatedDomain": "cissp-06"
+  },
+  {
+    "id": "ransomware-00-04",
+    "phase": "0-30min",
+    "order": 4,
+    "title": "Preservar evidências forenses",
+    "description": "Capture imagens de memória RAM dos sistemas críticos antes de qualquer intervenção. Tire prints das telas de ransom. Não execute ferramentas de limpeza ou antivírus ainda — podem apagar evidências.",
+    "owner": "TI",
+    "completionCriteria": "Evidências coletadas: imagens de memória, logs de sistema, prints de tela. Hash MD5/SHA256 calculados.",
+    "relatedDomain": "cissp-07"
+  },
+  {
+    "id": "ransomware-00-05",
+    "phase": "0-30min",
+    "order": 5,
+    "title": "Notificar liderança executiva",
+    "description": "Informe CEO/COO sobre o incidente em andamento. Comunique o status inicial, impacto nos negócios e próximos passos. Evite comunicação por e-mail corporativo.",
+    "owner": "CISO",
+    "completionCriteria": "Liderança notificada com briefing inicial. Aprovação para ativar plano de continuidade de negócios obtida.",
+    "relatedDomain": "issmp-01"
+  },
+  {
+    "id": "ransomware-00-06",
+    "phase": "0-30min",
+    "order": 6,
+    "title": "Avaliar pagamento de resgate (decisão executiva)",
+    "description": "NÃO pague sem orientação legal e de segurança. Consulte Jurídico sobre implicações legais (sansões OFAC se atacante for entidade sancionada). Documente a decisão independente do resultado.",
+    "owner": "Executivo",
+    "completionCriteria": "Decisão documentada sobre pagamento. Jurídico consultado. Seguradora notificada se houver cobertura de cyber.",
+    "relatedDomain": "issmp-05"
+  },
+  {
+    "id": "ransomware-24-01",
+    "phase": "24h",
+    "order": 1,
+    "title": "Identificar o vetor de entrada",
+    "description": "Analise logs de e-mail, VPN, RDP e proxies para identificar como o atacante entrou. Procure por: phishing, credenciais comprometidas, vulnerabilidades exploradas. Este passo guia toda a estratégia de remediação.",
+    "owner": "TI",
+    "completionCriteria": "Vetor de entrada identificado ou hipóteses principais documentadas. Timeline do ataque reconstruída.",
+    "relatedDomain": "cissp-06"
+  },
+  {
+    "id": "ransomware-24-02",
+    "phase": "24h",
+    "order": 2,
+    "title": "Identificar e eliminar persistência do atacante",
+    "description": "Procure backdoors, usuários criados pelo atacante, tarefas agendadas maliciosas e chaves de registro suspeitas. O atacante provavelmente ainda tem acesso — elimine TODOS os pontos de persistência antes de restaurar.",
+    "owner": "TI",
+    "completionCriteria": "Relatório de persistência eliminada. Todos os usuários criados pelo atacante removidos. Logs de atividade do atacante documentados.",
+    "relatedDomain": "cissp-05"
+  },
+  {
+    "id": "ransomware-24-03",
+    "phase": "24h",
+    "order": 3,
+    "title": "Avaliar obrigação de notificação regulatória",
+    "description": "Se dados pessoais foram afetados, avalie a obrigação de notificar a ANPD (72h da descoberta, conforme LGPD). Consulte o DPO. Identifique jurisdições afetadas (GDPR, CCPA se aplicável).",
+    "owner": "Jurídico",
+    "completionCriteria": "Análise de dados pessoais afetados concluída. Decisão de notificação documentada com fundamentação legal.",
+    "relatedDomain": "issmp-03"
+  },
+  {
+    "id": "ransomware-24-04",
+    "phase": "24h",
+    "order": 4,
+    "title": "Iniciar restauração por prioridade de negócio",
+    "description": "Restaure sistemas críticos a partir de backups limpos, na ordem definida pelo BCP. Valide integridade dos backups antes de restaurar. Mantenha ambientes restaurados isolados até confirmação de limpeza total.",
+    "owner": "TI",
+    "completionCriteria": "Sistemas críticos de tier-1 restaurados e operacionais. Integridade validada. Cronograma de restauração completa definido.",
+    "relatedDomain": "issmp-04"
+  },
+  {
+    "id": "ransomware-24-05",
+    "phase": "24h",
+    "order": 5,
+    "title": "Gerenciar comunicação externa e imprensa",
+    "description": "Defina mensagem oficial para clientes, parceiros e imprensa (se necessário). Não especule sobre causa ou extensão do dano. Ative advogados de comunicação de crise se houver exposição pública significativa.",
+    "owner": "Comunicação",
+    "completionCriteria": "Statement oficial aprovado pela liderança e Jurídico. Plano de comunicação com stakeholders definido.",
+    "relatedDomain": "issmp-01"
+  },
+  {
+    "id": "ransomware-72-01",
+    "phase": "72h",
+    "order": 1,
+    "title": "Concluir restauração de todos os sistemas",
+    "description": "Complete a restauração de todos os sistemas afetados. Realize testes de integridade e funcionais antes de reconectar à rede corporativa. Monitore intensivamente por 72h adicionais após restauração.",
+    "owner": "TI",
+    "completionCriteria": "100% dos sistemas restaurados, testados e reconectados. Monitoramento intensivo ativo por 72h.",
+    "relatedDomain": "issmp-04"
+  },
+  {
+    "id": "ransomware-72-02",
+    "phase": "72h",
+    "order": 2,
+    "title": "Fortalecer controles preventivos",
+    "description": "Implemente os controles que falharam: MFA em todos os acessos remotos, segmentação de rede, backups isolados (3-2-1), EDR atualizado. Feche a janela de ataque que foi explorada.",
+    "owner": "TI",
+    "completionCriteria": "Controles preventivos implementados e documentados. Scan de vulnerabilidades realizado. Zero falhas críticas pendentes.",
+    "relatedDomain": "cissp-03"
+  },
+  {
+    "id": "ransomware-72-03",
+    "phase": "72h",
+    "order": 3,
+    "title": "Realizar o post-mortem formal",
+    "description": "Conduza reunião de post-mortem sem culpa (blameless). Documente: timeline completa, decisões tomadas, o que funcionou e o que falhou, lições aprendidas e ações de melhoria com responsáveis e prazos.",
+    "owner": "CISO",
+    "completionCriteria": "Relatório de post-mortem concluído e aprovado. Plano de ação com responsáveis e datas definido. Compartilhado com liderança.",
+    "relatedDomain": "issmp-02"
+  },
+  {
+    "id": "ransomware-72-04",
+    "phase": "72h",
+    "order": 4,
+    "title": "Submeter relatório final a reguladores",
+    "description": "Se aplicável, submeta o relatório final à ANPD com detalhamento do incidente, dados afetados, medidas tomadas e ações de prevenção. Guarde toda documentação por prazo legal.",
+    "owner": "Jurídico",
+    "completionCriteria": "Relatório final submetido ao regulador (se obrigatório). Acuse de recebimento arquivado. Documentação completa retida por 5 anos.",
+    "relatedDomain": "issmp-03"
+  },
+  {
+    "id": "ransomware-72-05",
+    "phase": "72h",
+    "order": 5,
+    "title": "Atualizar e testar o Plano de Resposta a Incidentes",
+    "description": "Revise o IRP com base nas lições aprendidas. Atualize os playbooks, contatos de emergência e procedimentos. Agende um exercício tabletop nos próximos 60 dias para validar as melhorias.",
+    "owner": "CISO",
+    "completionCriteria": "IRP atualizado e aprovado. Exercício tabletop agendado. Time treinado nas mudanças.",
+    "relatedDomain": "issmp-02"
+  }
+]

@@ -4,8 +4,10 @@ import { useState, useCallback } from 'react';
 import { SituationInput } from '@/components/vciso/SituationInput';
 import { ClassificationBadge } from '@/components/vciso/ClassificationBadge';
 import { ResponseStream } from '@/components/vciso/ResponseStream';
+import { TenthManBlock } from '@/components/vciso/TenthManBlock';
 import { useProfile } from '@/hooks/useProfile';
 import { useVCISO } from '@/hooks/useVCISO';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 import type { SituationClassification } from '@/types/index';
 
 export default function Home() {
@@ -15,6 +17,7 @@ export default function Home() {
   const [lastSituation, setLastSituation] = useState('');
 
   const { mainContent, isStreaming, isComplete, error, tenthManState, submit, reset } = useVCISO();
+  const isDesktop = useMediaQuery('(min-width: 1024px)');
 
   const handleClassification = useCallback(
     (classified: SituationClassification, situation: string) => {
@@ -33,6 +36,9 @@ export default function Home() {
   }, [lastSituation, classification, profile, reset, submit]);
 
   const hasResponse = mainContent.length > 0 || isStreaming;
+  const hasTenthMan =
+    tenthManState &&
+    (tenthManState.content.length > 0 || tenthManState.isStreaming || !!tenthManState.error);
 
   return (
     <main className="flex min-h-[calc(100vh-57px)] flex-col items-center gap-8 px-6 py-12">
@@ -61,18 +67,18 @@ export default function Home() {
         <div
           role="status"
           aria-label="Analisando situação"
-          className="h-10 w-full max-w-2xl animate-pulse rounded-lg bg-zinc-800"
+          className="h-10 w-full max-w-5xl animate-pulse rounded-lg bg-zinc-800"
         />
       )}
 
       {!isClassifying && classification && (
-        <div className="w-full max-w-2xl">
+        <div className="w-full max-w-5xl">
           <ClassificationBadge classification={classification} />
         </div>
       )}
 
       {error && (
-        <div className="w-full max-w-2xl flex items-center justify-between rounded-lg border border-red-800 bg-red-950/30 px-4 py-3">
+        <div className="w-full max-w-5xl flex items-center justify-between rounded-lg border border-red-800 bg-red-950/30 px-4 py-3">
           <p className="text-sm text-red-300">{error.message}</p>
           {error.retryable && (
             <button
@@ -87,14 +93,30 @@ export default function Home() {
       )}
 
       {hasResponse && !error && (
-        <div className="w-full max-w-2xl">
+        /* AC4: grid-cols desktop sidebar, single col mobile */
+        <div
+          className={`w-full max-w-5xl ${
+            isDesktop && hasTenthMan
+              ? 'grid grid-cols-[1fr_400px] gap-6 items-start'
+              : 'flex flex-col gap-4'
+          }`}
+        >
           <ResponseStream
             content={mainContent}
             isStreaming={isStreaming}
             isComplete={isComplete}
             error={error}
-            tenthManState={tenthManState}
           />
+
+          {/* AC4: sidebar on desktop, stacked on mobile */}
+          {tenthManState && (
+            <div className={isDesktop ? 'sticky top-6' : ''}>
+              <TenthManBlock
+                state={tenthManState}
+                defaultExpanded={isDesktop} /* AC5: expanded desktop, collapsed mobile */
+              />
+            </div>
+          )}
         </div>
       )}
     </main>

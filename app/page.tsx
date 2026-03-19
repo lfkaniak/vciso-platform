@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { SituationInput } from '@/components/vciso/SituationInput';
 import { ClassificationBadge } from '@/components/vciso/ClassificationBadge';
 import { ResponseStream } from '@/components/vciso/ResponseStream';
@@ -8,9 +9,10 @@ import { TenthManBlock } from '@/components/vciso/TenthManBlock';
 import { useProfile } from '@/hooks/useProfile';
 import { useVCISO } from '@/hooks/useVCISO';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
+import { getSituation } from '@/lib/knowledge/situations';
 import type { SituationClassification } from '@/types/index';
 
-export default function Home() {
+function HomeContent() {
   const { profile } = useProfile();
   const [classification, setClassification] = useState<SituationClassification | null>(null);
   const [isClassifying, setIsClassifying] = useState(false);
@@ -18,6 +20,11 @@ export default function Home() {
 
   const { mainContent, isStreaming, isComplete, error, tenthManState, submit, reset } = useVCISO();
   const isDesktop = useMediaQuery('(min-width: 1024px)');
+
+  // AC3 — pré-preenchimento via ?situation=S01 (vindo do SituationCard)
+  const searchParams = useSearchParams();
+  const situationId = searchParams.get('situation');
+  const preselected = situationId ? getSituation(situationId) : null;
 
   const handleClassification = useCallback(
     (classified: SituationClassification, situation: string) => {
@@ -61,6 +68,8 @@ export default function Home() {
             setClassification(null);
           }
         }}
+        initialValue={preselected?.promptSeed}
+        autoSubmit={!!preselected}
       />
 
       {isClassifying && (
@@ -120,5 +129,13 @@ export default function Home() {
         </div>
       )}
     </main>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense>
+      <HomeContent />
+    </Suspense>
   );
 }

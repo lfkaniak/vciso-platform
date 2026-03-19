@@ -1,0 +1,312 @@
+[
+  {
+    "id": "S01",
+    "title": "Ataque de Ransomware em Andamento",
+    "cluster": "crisis",
+    "urgency": "high",
+    "relevantDomains": ["cissp-07", "issmp-04"],
+    "mode": "orient-me-now",
+    "isMvp": true,
+    "promptSeed": "Estamos sofrendo um ataque de ransomware agora. Nossos servidores foram criptografados e os atacantes estão pedindo resgate. Preciso de orientação imediata sobre os próximos passos."
+  },
+  {
+    "id": "S02",
+    "title": "Vazamento de Dados — Notificação Necessária",
+    "cluster": "crisis",
+    "urgency": "high",
+    "relevantDomains": ["cissp-07", "issmp-04", "issmp-03"],
+    "mode": "orient-me-now",
+    "isMvp": true,
+    "promptSeed": "Identificamos um vazamento de dados de clientes. Dados pessoais foram expostos e precisamos avaliar a obrigação de notificação à ANPD e aos titulares afetados dentro do prazo legal."
+  },
+  {
+    "id": "S03",
+    "title": "Ataque DDoS em Infraestrutura Crítica",
+    "cluster": "crisis",
+    "urgency": "high",
+    "relevantDomains": ["cissp-07", "cissp-04"],
+    "mode": "orient-me-now",
+    "isMvp": false,
+    "promptSeed": "Nossos sistemas estão sendo derrubados por um ataque DDoS massivo. Os serviços estão indisponíveis e precisamos de um plano de mitigação imediato."
+  },
+  {
+    "id": "S04",
+    "title": "Ameaça Interna Detectada",
+    "cluster": "crisis",
+    "urgency": "high",
+    "relevantDomains": ["cissp-07", "cissp-05"],
+    "mode": "orient-me-now",
+    "isMvp": false,
+    "promptSeed": "Detectamos atividade suspeita de um colaborador interno: acessos fora do horário, download massivo de dados e possível exfiltração. Precisamos agir com urgência e cuidado legal."
+  },
+  {
+    "id": "S05",
+    "title": "Exploração de Vulnerabilidade Crítica",
+    "cluster": "crisis",
+    "urgency": "high",
+    "relevantDomains": ["cissp-06", "cissp-07"],
+    "mode": "orient-me-now",
+    "isMvp": false,
+    "promptSeed": "Uma vulnerabilidade zero-day está sendo ativamente explorada em nosso ambiente. Precisamos de um plano de contenção emergencial e comunicação interna sobre o incidente."
+  },
+  {
+    "id": "S06",
+    "title": "Campanha de Phishing Direcionada",
+    "cluster": "crisis",
+    "urgency": "high",
+    "relevantDomains": ["cissp-07", "cissp-05"],
+    "mode": "orient-me-now",
+    "isMvp": false,
+    "promptSeed": "Identificamos uma campanha de phishing sofisticada direcionada aos nossos executivos (spear phishing). Alguns já clicaram nos links. Precisamos de um plano de resposta e contenção."
+  },
+  {
+    "id": "S07",
+    "title": "Apresentação de Postura de Segurança ao Board",
+    "cluster": "strategic",
+    "urgency": "medium",
+    "relevantDomains": ["cissp-01", "issmp-01", "issmp-06"],
+    "mode": "help-decide",
+    "isMvp": true,
+    "promptSeed": "Preciso apresentar a postura de segurança da empresa ao conselho de administração no próximo mês. Quero traduzir riscos técnicos em linguagem de negócios e mostrar o valor dos investimentos em segurança."
+  },
+  {
+    "id": "S08",
+    "title": "Justificativa de Budget de Segurança",
+    "cluster": "strategic",
+    "urgency": "medium",
+    "relevantDomains": ["cissp-01", "issmp-06"],
+    "mode": "help-decide",
+    "isMvp": true,
+    "promptSeed": "Preciso justificar o orçamento de segurança para o próximo ano à diretoria financeira. Quero apresentar o retorno sobre investimento em segurança (ROSI) e priorizar os investimentos pelo risco."
+  },
+  {
+    "id": "S09",
+    "title": "Due Diligence de Segurança em M&A",
+    "cluster": "strategic",
+    "urgency": "medium",
+    "relevantDomains": ["cissp-01", "cissp-02", "issmp-03"],
+    "mode": "help-decide",
+    "isMvp": false,
+    "promptSeed": "Estamos em processo de aquisição de uma empresa e preciso realizar o due diligence de segurança. Quero identificar os riscos cibernéticos do alvo e os passivos de conformidade antes do fechamento."
+  },
+  {
+    "id": "S10",
+    "title": "Estratégia de Segurança para Migração Cloud",
+    "cluster": "strategic",
+    "urgency": "medium",
+    "relevantDomains": ["cissp-03", "cissp-04", "cissp-01"],
+    "mode": "help-decide",
+    "isMvp": false,
+    "promptSeed": "Nossa empresa está migrando para cloud (AWS/Azure/GCP) e preciso definir a estratégia de segurança: modelo de responsabilidade compartilhada, controles de acesso, criptografia e monitoramento."
+  },
+  {
+    "id": "S11",
+    "title": "Decisão de Arquitetura Zero Trust",
+    "cluster": "strategic",
+    "urgency": "medium",
+    "relevantDomains": ["cissp-03", "cissp-05", "cissp-04"],
+    "mode": "help-decide",
+    "isMvp": false,
+    "promptSeed": "Estamos considerando adotar uma arquitetura Zero Trust. Preciso entender os trade-offs, o roadmap de implementação e como justificar o investimento para a liderança."
+  },
+  {
+    "id": "S12",
+    "title": "Criação do Programa de Segurança da Informação",
+    "cluster": "strategic",
+    "urgency": "medium",
+    "relevantDomains": ["issmp-01", "issmp-06", "cissp-01"],
+    "mode": "help-decide",
+    "isMvp": true,
+    "promptSeed": "Preciso criar um programa de segurança da informação do zero para nossa organização. Quero definir a estrutura, prioridades, políticas fundamentais e o roadmap de implementação para os próximos 12 meses."
+  },
+  {
+    "id": "S13",
+    "title": "Estruturação do Time de Segurança",
+    "cluster": "strategic",
+    "urgency": "medium",
+    "relevantDomains": ["issmp-01", "issmp-06"],
+    "mode": "help-decide",
+    "isMvp": false,
+    "promptSeed": "Preciso estruturar uma equipe de segurança para uma empresa em crescimento. Quero definir os papéis necessários, o modelo operacional (interno vs terceirizado) e as competências críticas."
+  },
+  {
+    "id": "S14",
+    "title": "Jornada de Certificação ISO 27001",
+    "cluster": "compliance",
+    "urgency": "medium",
+    "relevantDomains": ["issmp-03", "cissp-01", "issmp-02"],
+    "mode": "help-comply",
+    "isMvp": true,
+    "promptSeed": "Nossa empresa precisa obter a certificação ISO 27001. Estamos no início da jornada e preciso entender o escopo, os controles obrigatórios, o cronograma típico e como preparar a organização para a auditoria."
+  },
+  {
+    "id": "S15",
+    "title": "Preparação para Auditoria SOC 2",
+    "cluster": "compliance",
+    "urgency": "medium",
+    "relevantDomains": ["issmp-03", "cissp-06", "cissp-01"],
+    "mode": "help-comply",
+    "isMvp": false,
+    "promptSeed": "Um cliente enterprise exige que obtenhamos o relatório SOC 2 Type II. Preciso entender os critérios de serviços de confiança, o que precisamos implementar e como gerenciar a auditoria."
+  },
+  {
+    "id": "S16",
+    "title": "Adequação PCI DSS",
+    "cluster": "compliance",
+    "urgency": "medium",
+    "relevantDomains": ["issmp-03", "cissp-04", "cissp-05"],
+    "mode": "help-comply",
+    "isMvp": false,
+    "promptSeed": "Nossa empresa processa cartões de pagamento e precisamos atingir conformidade com o PCI DSS. Quero entender os requisitos aplicáveis ao nosso ambiente e priorizar as ações de remediação."
+  },
+  {
+    "id": "S17",
+    "title": "Adequação à LGPD",
+    "cluster": "compliance",
+    "urgency": "medium",
+    "relevantDomains": ["issmp-03", "cissp-02", "issmp-05"],
+    "mode": "help-comply",
+    "isMvp": true,
+    "promptSeed": "Nossa empresa ainda não está totalmente adequada à LGPD. Preciso de um plano de adequação priorizando os processos com dados pessoais mais sensíveis e as obrigações legais mais urgentes."
+  },
+  {
+    "id": "S18",
+    "title": "Conformidade com GDPR",
+    "cluster": "compliance",
+    "urgency": "medium",
+    "relevantDomains": ["issmp-03", "cissp-02", "issmp-05"],
+    "mode": "help-comply",
+    "isMvp": false,
+    "promptSeed": "Temos clientes e operações na Europa e precisamos garantir conformidade com o GDPR. Quero entender as obrigações específicas, direitos dos titulares e como estruturar o DPO."
+  },
+  {
+    "id": "S19",
+    "title": "Resposta a Auditoria Regulatória",
+    "cluster": "compliance",
+    "urgency": "medium",
+    "relevantDomains": ["issmp-03", "issmp-05", "cissp-01"],
+    "mode": "help-comply",
+    "isMvp": false,
+    "promptSeed": "Receberemos uma auditoria do regulador do setor (BACEN/ANVISA/ANPD) em 30 dias. Preciso organizar as evidências, identificar as lacunas críticas e preparar a equipe para as entrevistas."
+  },
+  {
+    "id": "S20",
+    "title": "Criação de Políticas de Segurança",
+    "cluster": "operational",
+    "urgency": "medium",
+    "relevantDomains": ["issmp-02", "cissp-01", "issmp-01"],
+    "mode": "help-operate",
+    "isMvp": true,
+    "promptSeed": "Precisamos criar as políticas de segurança da informação da empresa do zero. Quero saber quais políticas são essenciais, como estruturá-las e como garantir que sejam seguidas na prática."
+  },
+  {
+    "id": "S21",
+    "title": "Programa de Gestão de Vulnerabilidades",
+    "cluster": "operational",
+    "urgency": "medium",
+    "relevantDomains": ["cissp-06", "cissp-07", "issmp-02"],
+    "mode": "help-operate",
+    "isMvp": true,
+    "promptSeed": "Precisamos estruturar um programa de gestão de vulnerabilidades. Quero definir o processo de scanning, priorização pelo risco e SLAs de remediação para os diferentes níveis de criticidade."
+  },
+  {
+    "id": "S22",
+    "title": "Processo de Gestão de Patches",
+    "cluster": "operational",
+    "urgency": "medium",
+    "relevantDomains": ["cissp-06", "cissp-07"],
+    "mode": "help-operate",
+    "isMvp": false,
+    "promptSeed": "Nossa empresa não tem um processo estruturado de gestão de patches. Preciso implementar um processo que garanta a aplicação de patches críticos dentro de prazos seguros sem impactar a disponibilidade."
+  },
+  {
+    "id": "S23",
+    "title": "Revisão de Acessos e Governança de Identidade",
+    "cluster": "operational",
+    "urgency": "medium",
+    "relevantDomains": ["cissp-05", "issmp-02"],
+    "mode": "help-operate",
+    "isMvp": false,
+    "promptSeed": "Precisamos realizar uma revisão de acessos em toda a organização. Há suspeita de acúmulo de privilégios e contas órfãs. Quero implementar um processo de certificação de acessos recorrente."
+  },
+  {
+    "id": "S24",
+    "title": "Programa de Conscientização em Segurança",
+    "cluster": "operational",
+    "urgency": "low",
+    "relevantDomains": ["cissp-07", "issmp-01"],
+    "mode": "help-operate",
+    "isMvp": false,
+    "promptSeed": "Preciso implementar um programa de conscientização em segurança para todos os colaboradores. Quero definir os temas prioritários, a frequência dos treinamentos e como medir a efetividade."
+  },
+  {
+    "id": "S25",
+    "title": "Criação do Plano de Resposta a Incidentes",
+    "cluster": "operational",
+    "urgency": "medium",
+    "relevantDomains": ["cissp-07", "issmp-04"],
+    "mode": "help-operate",
+    "isMvp": false,
+    "promptSeed": "Nossa empresa não tem um plano formal de resposta a incidentes. Preciso criar um IRP que cubra os principais cenários de ameaça, defina os papéis e responsabilidades e estabeleça os processos de comunicação."
+  },
+  {
+    "id": "S26",
+    "title": "Métricas e Relatório de Segurança",
+    "cluster": "operational",
+    "urgency": "low",
+    "relevantDomains": ["issmp-06", "cissp-01", "issmp-01"],
+    "mode": "help-operate",
+    "isMvp": true,
+    "promptSeed": "Preciso criar um dashboard e relatório periódico de métricas de segurança para a liderança. Quero definir os KPIs mais relevantes, como coletá-los e como apresentá-los de forma executiva."
+  },
+  {
+    "id": "S27",
+    "title": "Segurança em Novo Projeto de Software",
+    "cluster": "projects",
+    "urgency": "low",
+    "relevantDomains": ["cissp-08", "cissp-03", "cissp-06"],
+    "mode": "help-operate",
+    "isMvp": false,
+    "promptSeed": "Estamos iniciando o desenvolvimento de um novo sistema e quero integrar segurança desde o design (shift-left). Preciso definir os requisitos de segurança, threat modeling e os gates de segurança no SDLC."
+  },
+  {
+    "id": "S28",
+    "title": "Avaliação de Risco em Terceiros",
+    "cluster": "projects",
+    "urgency": "low",
+    "relevantDomains": ["cissp-01", "cissp-02", "issmp-03"],
+    "mode": "help-decide",
+    "isMvp": false,
+    "promptSeed": "Precisamos contratar um novo fornecedor que terá acesso a dados sensíveis. Quero implementar um processo de avaliação de risco em terceiros e definir as cláusulas contratuais de segurança necessárias."
+  },
+  {
+    "id": "S29",
+    "title": "Preparação para Teste de Penetração",
+    "cluster": "projects",
+    "urgency": "low",
+    "relevantDomains": ["cissp-06", "cissp-07", "cissp-03"],
+    "mode": "help-operate",
+    "isMvp": false,
+    "promptSeed": "Vamos contratar um pentest externo pela primeira vez. Quero entender como definir o escopo, o que preparar antes do teste, como avaliar as propostas das empresas e o que fazer com os resultados."
+  },
+  {
+    "id": "S30",
+    "title": "Revisão de Arquitetura de Segurança",
+    "cluster": "projects",
+    "urgency": "low",
+    "relevantDomains": ["cissp-03", "cissp-01", "cissp-04"],
+    "mode": "help-decide",
+    "isMvp": false,
+    "promptSeed": "Precisamos revisar a arquitetura de segurança atual da nossa infraestrutura. Queremos identificar gaps, pontos de falha única e oportunidades de melhoria alinhadas às melhores práticas."
+  },
+  {
+    "id": "S31",
+    "title": "Planejamento de Continuidade de Negócios",
+    "cluster": "projects",
+    "urgency": "low",
+    "relevantDomains": ["issmp-04", "cissp-07", "issmp-06"],
+    "mode": "help-operate",
+    "isMvp": false,
+    "promptSeed": "Precisamos criar um plano de continuidade de negócios (BCP) e recuperação de desastres (DRP). Quero definir o RTO/RPO para os processos críticos e estruturar os planos de contingência."
+  }
+]

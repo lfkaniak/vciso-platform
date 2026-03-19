@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import type { InteractionMode, SituationClassification } from '@/types/index';
 
 interface ModeCard {
@@ -41,17 +41,44 @@ interface SituationInputProps {
   onClassification: (classification: SituationClassification, situation: string) => void;
   onLoadingChange?: (loading: boolean) => void;
   profile: string;
+  initialValue?: string;
+  autoSubmit?: boolean;
 }
 
 export function SituationInput({
   onClassification,
   onLoadingChange,
   profile,
+  initialValue,
+  autoSubmit,
 }: SituationInputProps) {
-  const [situation, setSituation] = useState('');
+  const [situation, setSituation] = useState(initialValue ?? '');
   const [selectedMode, setSelectedMode] = useState<InteractionMode | null>(null);
+  const autoSubmitRef = useRef(false);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  // Auto-submit when initialValue + autoSubmit are provided (from SituationCard click)
+  useEffect(() => {
+    if (autoSubmit && initialValue && initialValue.length >= 10 && !autoSubmitRef.current) {
+      autoSubmitRef.current = true;
+      setSituation(initialValue);
+      setIsLoading(true);
+      onLoadingChange?.(true);
+      fetch('/api/classify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ situation: initialValue, profile }),
+      })
+        .then((res) => res.json() as Promise<SituationClassification>)
+        .then((data) => onClassification(data, initialValue))
+        .catch(() => setError('Não foi possível classificar a situação. Tente novamente.'))
+        .finally(() => {
+          setIsLoading(false);
+          onLoadingChange?.(false);
+        });
+    }
+  }, [autoSubmit, initialValue, profile, onClassification, onLoadingChange]);
 
   const handleModeCard = useCallback((mode: InteractionMode) => {
     setSelectedMode(mode);

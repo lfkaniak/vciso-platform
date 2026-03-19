@@ -14,5 +14,6 @@ export function encodeSSE(data: string): Uint8Array {
 
 /** Prefix helpers for the multiplexed protocol. */
 export const sseChunk = (text: string) => encodeSSE(`M:${text}`);
+export const sseTenthChunk = (text: string) => encodeSSE(`T:${text}`);
 export const sseSignal = (signal: string) => encodeSSE(`S:${signal}`);
 export const sseError = (code: string) => encodeSSE(`S:ERROR:${code}`);
